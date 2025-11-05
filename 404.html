@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>404 | CARFLOW</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"/>
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <style>
+    .error-card {
+      max-width: 460px;
+      background: rgba(255,255,255,0.10);
+      border-radius: 18px;
+      backdrop-filter: blur(20px) saturate(150%);
+      -webkit-backdrop-filter: blur(20px) saturate(150%);
+      box-shadow: 0 4px 18px rgba(0,0,0,0.35);
+    }
+    .error-icon {
+      font-size: 3rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- 🎥 Background Video (same band) -->
+  <div class="video-band" aria-hidden="true">
+    <video class="video-band__video" autoplay muted loop playsinline preload="auto">
+      <source src="video/G80_Black.mp4" type="video/mp4" />
+    </video>
+    <div class="video-band__vignette"></div>
+  </div>
+
+  <main class="container-fluid min-vh-100 d-flex flex-column align-items-center justify-content-center">
+    <div class="error-card card border-0 text-light p-4 text-center">
+      <div class="mb-2"><i class="bi bi-exclamation-triangle error-icon text-warning"></i></div>
+      <h1 class="h4 fw-bold mb-2">Page not found</h1>
+      <p class="mb-4 opacity-75">The page you’re looking for doesn’t exist or may have moved.</p>
+
+      <div class="d-grid gap-2">
+        <a href="./" class="btn btn-primary">
+          <i class="bi bi-house-door me-1"></i> Go to Home
+        </a>
+        <a href="#" id="contactAdmin" class="btn btn-outline-light">
+          <i class="bi bi-person-gear me-1"></i> Contact admin
+        </a>
+      </div>
+
+      <p class="text-center small text-secondary mt-4 mb-0">
+        © 2025. <strong>JAEGYU LEE</strong> | Video courtesy of <strong>GENESIS KOREA</strong>
+      </p>
+    </div>
+  </main>
+
+  <!-- Reusable Modal (same as index) -->
+  <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content bg-dark text-white border-0">
+        <div class="modal-header border-0">
+          <h5 class="modal-title" id="contactModalLabel"></h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="contactModalBody"></div>
+        <div class="modal-footer border-0">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // 간단 Contact admin 모달 (index와 동일 톤)
+    function showModal(title, body) {
+      const titleEl = document.getElementById("contactModalLabel");
+      const bodyEl = document.getElementById("contactModalBody");
+      if (!titleEl || !bodyEl) return;
+      titleEl.innerHTML = title;
+      bodyEl.innerHTML = body;
+      const modal = new bootstrap.Modal(document.getElementById("contactModal"));
+      modal.show();
+    }
+    document.getElementById("contactAdmin")?.addEventListener("click", (e) => {
+      e.preventDefault();
+      showModal(
+        '<i class="bi bi-lock-fill me-2 text-info"></i>Access Restricted',
+        `Only authorized users have access.<br>
+         If you’d like to register, please contact
+         <a href="https://www.instagram.com/jaguar02_" target="_blank" class="link-info text-decoration-none">@jaguar02_</a>
+         on Instagram.`
+      );
+    });
+  </script>
+</body>
+</html>
