@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CARFLOW | Login</title>
+  <!-- <link rel="icon" type="image/svg+xml" href="img/logo.svg" /> -->
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+
+  <!-- App CSS -->
+  <link rel="stylesheet" href="assets/css/main.css" />
+</head>
+
+<body>
+  <!-- 🎥 Background Video -->
+  <div class="video-band" aria-hidden="true">
+    <video id="bgVideo" class="video-band__video" autoplay muted loop playsinline preload="auto">
+      <source src="video/G80_Black.mp4" type="video/mp4" />
+    </video>
+    <div class="video-band__vignette"></div>
+  </div>
+
+  <!-- 💧 Liquid Blobs -->
+  <div class="liquid-blobs" aria-hidden="true">
+    <span class="blob blob-a"></span>
+    <span class="blob blob-b"></span>
+  </div>
+
+  <!-- 🧊 Login Card -->
+  <main class="container-fluid min-vh-100 d-flex flex-column align-items-center justify-content-center">
+    <div class="login-card liquid card border-0 shadow-lg mb-4">
+      <div class="card-body p-4 p-md-5 text-light">
+        <h1 class="h4 fw-bold mb-4 text-center">CARFLOW</h1>
+        <h2 class="h5 fw-semibold mb-3 text-center">Sign In</h2>
+
+        <form id="loginForm" class="needs-validation" novalidate>
+          <div class="mb-3">
+            <label for="userId" class="form-label">Username</label>
+            <input type="text" class="form-control" id="userId" name="userId" placeholder="Enter your username"
+              autocomplete="username" required minlength="3" />
+            <div class="invalid-feedback">Please enter at least 3 characters.</div>
+          </div>
+
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <div class="input-group">
+              <input type="password" class="form-control" id="password" name="password"
+                placeholder="Enter your password" autocomplete="current-password" required minlength="6" />
+              <button class="btn btn-outline-secondary" type="button" id="togglePw">
+                <i class="bi bi-eye"></i>
+              </button>
+              <div class="invalid-feedback">Password must be at least 6 characters.</div>
+            </div>
+          </div>
+
+          <div class="d-flex align-items-center justify-content-between mb-4">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="rememberMe" />
+              <label class="form-check-label" for="rememberMe">Remember Me</label>
+            </div>
+            <a href="#" id="forgotPw" class="link-light small opacity-75">Forgot Password?</a>
+          </div>
+
+          <button id="loginBtn" class="btn btn-primary w-100 d-flex align-items-center justify-content-center gap-2"
+            type="submit">
+            <span class="btn-label">Sign In</span>
+            <span class="spinner-border spinner-border-sm d-none" id="btnSpinner" role="status"></span>
+          </button>
+        </form>
+
+        <p class="text-center small text-secondary mt-4 mb-0">
+          <a href="#" id="contactAdmin" class="link-light">Contact admin</a>
+        </p>
+      </div>
+    </div>
+
+    <!-- 📜 Footer (저작권 + What is CARFLOW?) -->
+    <footer class="text-center small" style="color: rgba(255,255,255,0.55); font-size: 0.75rem;">
+      © 2025. <strong>JAEGYU LEE</strong> | Video courtesy of <strong>GENESIS KOREA</strong><br>
+      <a href="#" id="whatIsCarflow" class="link-light link-offset-2 link-underline-opacity-0"
+        style="font-size: 0.7rem;">What is CARFLOW?</a>
+    </footer>
+  </main>
+
+  <!-- Toast -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="loginToast" class="toast align-items-center text-bg-dark border-0" role="status" aria-live="polite"
+      aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body" id="toastMessage">Signing in...</div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+          aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 📩 Reusable Modal -->
+  <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content bg-dark text-white border-0">
+        <div class="modal-header border-0">
+          <h5 class="modal-title" id="contactModalLabel"></h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="contactModalBody"></div>
+        <div class="modal-footer border-0">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- App JS -->
+  <script src="assets/js/main.js"></script>
+
+  <!-- 🎬 Video Control Button -->
+  <button id="videoToggle" class="video-control" aria-label="Toggle video">
+    <i class="bi bi-pause-fill"></i>
+  </button>
+</body>
+
+</html>
