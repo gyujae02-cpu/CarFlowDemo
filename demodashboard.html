@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CARFLOW | Demo</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Page CSS -->
+    <link href="assets/css/demodashboard.css" rel="stylesheet" />
+</head>
+
+<body data-theme="dark">
+    <!-- Navbar -->
+    <nav class="navbar navbar-dark">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            <!-- 왼쪽: 브랜드 -->
+            <a class="navbar-brand d-flex align-items-center gap-2" href="/main">
+                CARFLOW DEMO
+            </a>
+
+            <!-- 오른쪽: 테마 토글 → Welcome → Logout -->
+            <div class="d-flex align-items-center gap-3">
+                <button id="themeToggle" class="btn btn-sm" type="button" aria-label="Toggle theme">🌙</button>
+                <span class="cf-welcome-text">Welcome, Guest</span>
+                <button class="btn btn-sm btn-logout" type="button">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main -->
+    <div class="main-content">
+        <h2 class="cf-section-title">Choose Your Drive</h2>
+        <div class="main-grid">
+            <div class="cf-carousel" aria-roledescription="carousel">
+                <div class="cf-carousel-viewport" aria-live="polite">
+                    <div class="cf-carousel-track" id="cfTrack">
+
+                        <!-- Slide 1 -->
+                        <section class="cf-slide is-active" id="slide-1" aria-label="Slide 1">
+                            <!-- Topbar -->
+                            <div class="cf-slide-topbar">
+                                <div class="d-flex align-items-center gap-2 position-relative">
+                                    <img class="cf-badge" src="img/Genesis_Logo_Dark.png"
+                                        data-src-dark="img/Genesis_Logo_Dark.png"
+                                        data-src-light="img/Genesis_Logo_Light.png" alt="Badge" />
+                                    <h3 class="cf-top-title m-0">G80 BLACK</h3>
+                                </div>
+                                <button class="cf-btn cf-btn-select cf-popup-btn" type="button">View Details</button>
+                            </div>
+
+                            <!-- Centered plate -->
+                            <div class="cf-plate-container">
+                                <img src="img/Number_Plate.png" alt="Number Plate" class="cf-plate" />
+                                <div class="cf-plate-text">111<span class="cf-plate-kr">차 </span>1234</div>
+                            </div>
+
+                            <!-- ✅ 주행거리 -->
+                            <div class="cf-mileage">
+                                <img src="img/local_gas_station_24dp_999999_FILL0_wght400_GRAD0_opsz24.svg"
+                                    alt="Mileage Icon" class="cf-mileage-icon" />
+                                    Fuel Level : 100%
+                            </div>
+
+                            <!-- Hero image -->
+                            <img class="cf-hero-img" src="img/G80_Black.png" alt="Driving Summary Graphic" />
+                        </section>
+
+                        <!-- Slide 2 -->
+                        <section class="cf-slide" id="slide-2" aria-label="Slide 2">
+                            <div class="cf-slide-topbar">
+                                <div class="d-flex align-items-center gap-2 position-relative">
+                                    <img class="cf-badge" src="img/Genesis_Logo_Dark.png"
+                                        data-src-dark="img/Genesis_Logo_Dark.png"
+                                        data-src-light="img/Genesis_Logo_Light.png" alt="Badge" />
+                                    <h3 class="cf-top-title m-0">G90 BLACK</h3>
+                                </div>
+                                <button class="cf-btn cf-btn-select cf-popup-btn" type="button">View Details</button>
+                            </div>
+
+                            <div class="cf-plate-container">
+                                <img src="img/Number_Plate.png" alt="Number Plate" class="cf-plate" />
+                                <div class="cf-plate-text">222<span class="cf-plate-kr">차 </span>1234</div>
+                            </div>
+
+                            <!-- ✅ 주행거리 -->
+                            <div class="cf-mileage">
+                                <img src="img/local_gas_station_24dp_999999_FILL0_wght400_GRAD0_opsz24.svg"
+                                    alt="Mileage Icon" class="cf-mileage-icon" />
+                                    Fuel Level : 100%
+                            </div>
+
+                            <img class="cf-hero-img" src="img/G90_Black.png" alt="Driving Summary Graphic" />
+                        </section>
+
+                        <!-- Slide 3 -->
+                        <section class="cf-slide" id="slide-3" aria-label="Slide 3">
+                            <div class="cf-slide-topbar">
+                                <div class="d-flex align-items-center gap-2 position-relative">
+                                    <img class="cf-badge" src="img/Genesis_Logo_Dark.png"
+                                        data-src-dark="img/Genesis_Logo_Dark.png"
+                                        data-src-light="img/Genesis_Logo_Light.png" alt="Badge" />
+                                    <h3 class="cf-top-title m-0">GV80 BLACK</h3>
+                                </div>
+                                <button class="cf-btn cf-btn-select cf-popup-btn" type="button">View Details</button>
+                            </div>
+
+                            <div class="cf-plate-container">
+                                <img src="img/Number_Plate.png" alt="Number Plate" class="cf-plate" />
+                                <div class="cf-plate-text">333<span class="cf-plate-kr">차 </span>1234</div>
+                            </div>
+
+                            <!-- ✅ 주행거리 -->
+                            <div class="cf-mileage">
+                                <img src="img/local_gas_station_24dp_999999_FILL0_wght400_GRAD0_opsz24.svg"
+                                    alt="Mileage Icon" class="cf-mileage-icon" />
+                                    Fuel Level : 100%
+                            </div>
+
+                            <img class="cf-hero-img" src="img/GV80_Black.png" alt="Driving Summary Graphic" />
+                        </section>
+
+                        <!-- Slide 4: Info -->
+                        <section class="cf-slide" id="slide-4" aria-label="Slide 4">
+                            <div class="cf-info-box">
+                                <p>This page is a demo version of the CARFLOW service.</p>
+                                <p>All photos shown on this page are for demonstration purposes only.</p>
+                                <p>The photos are provided courtesy of GENESIS KOREA.</p>
+                                <p>For any inquiries, please contact us via Instagram <strong>@jaguar02_</strong>.</p>
+                                <p class="cf-info-thanks">Thank you.</p>
+                            </div>
+                        </section>
+
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div class="cf-controls-wrap">
+                    <!-- Prev -->
+                    <button class="cf-control cf-prev" id="cfPrev" aria-label="Previous slide">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M15 18L9 12l6-6" fill="none" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <!-- Next -->
+                    <button class="cf-control cf-next" id="cfNext" aria-label="Next slide">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Dots -->
+                <div class="cf-dots" id="cfDots" role="tablist" aria-label="Slides"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p class="footer-text">© 2025. JAEGYU LEE</p>
+    </footer>
+
+    <!-- ✅ 팝업 HTML -->
+    <div class="cf-popup-overlay" id="cfPopup">
+        <div class="cf-popup-box">
+            <h3 class="cf-popup-title">Notice</h3>
+            <p class="cf-popup-message">The ‘View Details’ demo page is coming soon.</p>
+            <button class="cf-popup-close">OK</button>
+        </div>
+    </div>
+
+    <script src="assets/js/demodashboard.js"></script>
+</body>
+
+</html>
