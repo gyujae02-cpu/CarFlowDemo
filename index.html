@@ -44,8 +44,8 @@
         <form id="loginForm" class="needs-validation" novalidate>
           <div class="mb-3">
             <label for="userId" class="form-label">Username</label>
-            <input type="text" class="form-control" id="userId" name="userId"
-              placeholder="Enter your username" autocomplete="username" required minlength="3" />
+            <input type="text" class="form-control" id="userId" name="userId" placeholder="Enter your username"
+              autocomplete="username" required minlength="3" />
             <div class="invalid-feedback">Please enter at least 3 characters.</div>
           </div>
 
@@ -69,8 +69,7 @@
             <!-- <a href="#" id="forgotPw" class="link-light small opacity-75">Forgot Password?</a> -->
           </div>
 
-          <button id="loginBtn"
-            class="btn btn-primary w-100 d-flex align-items-center justify-content-center gap-2"
+          <button id="loginBtn" class="btn btn-primary w-100 d-flex align-items-center justify-content-center gap-2"
             type="submit">
             <span class="btn-label">Sign In</span>
             <span class="spinner-border spinner-border-sm d-none" id="btnSpinner" role="status"></span>
@@ -78,13 +77,14 @@
         </form>
 
         <!-- 📞 Contact Admin -->
-        <p class="text-center small text-secondary mt-4 mb-1">
+        <p class="text-center small text-secondary mt-4">
           <a href="#" id="contactAdmin" class="link-light">Contact admin</a>
         </p>
 
         <!-- 💡 Demo Dashboard Link -->
         <p class="text-center small text-secondary mb-0">
-          <a href="demo/" id="viewDemo" class="link-light text-decoration-none" style="font-size: 0.8rem; opacity: 0.85;">
+          <a href="demo/" id="viewDemo" class="link-light text-decoration-underline"
+            style="font-size: 1rem; opacity: 0.9; font-weight: 500;">
             🚀 View Demo Dashboard
           </a>
         </p>
@@ -106,30 +106,27 @@
 
   <!-- Toast -->
   <div class="toast-container position-absolute top-0 start-50 translate-middle-x mt-3" id="toastArea">
-    <div id="loginToast" class="toast align-items-center text-bg-dark border-0" role="status"
-      aria-live="polite" aria-atomic="true">
+    <div id="loginToast" class="toast align-items-center text-bg-dark border-0" role="status" aria-live="polite"
+      aria-atomic="true">
       <div class="d-flex">
         <div class="toast-body" id="toastMessage">Signing in...</div>
-        <button type="button" class="btn-close btn-close-white me-2 m-auto"
-          data-bs-dismiss="toast" aria-label="Close"></button>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+          aria-label="Close"></button>
       </div>
     </div>
   </div>
 
   <!-- 📩 Reusable Modal -->
-  <div class="modal fade" id="contactModal" tabindex="-1"
-    aria-labelledby="contactModalLabel" aria-hidden="true">
+  <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content bg-dark text-white border-0">
         <div class="modal-header border-0">
           <h5 class="modal-title" id="contactModalLabel"></h5>
-          <button type="button" class="btn-close btn-close-white"
-            data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body" id="contactModalBody"></div>
         <div class="modal-footer border-0">
-          <button type="button" class="btn btn-primary"
-            data-bs-dismiss="modal">OK</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
         </div>
       </div>
     </div>
