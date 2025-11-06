@@ -678,3 +678,150 @@ body[data-theme="light"] .cf-mileage {
   transform: scale(1.05);
   opacity: 1;
 }
+
+/* ===== Responsive tweaks ===== */
+/* 태블릿 이하 */
+@media (max-width: 768px) {
+  /* 내비 패딩 살짝 축소(세이프 에어리어 유지) */
+  .navbar .container-fluid {
+    padding-right: max(.75rem, env(safe-area-inset-right));
+    padding-left:  max(.75rem, env(safe-area-inset-left));
+  }
+
+  .cf-section-title {
+    font-size: .95rem;
+    margin-top: 12px;
+  }
+
+  .cf-carousel {
+    max-width: 640px;
+    width: calc(100% - 24px);
+    margin: 12px auto;
+    padding-bottom: 48px; /* dots + footer 간 여유 */
+  }
+
+  .cf-slide {
+    padding: clamp(12px, 3vw, 24px);
+  }
+
+  .cf-hero-img {
+    width: min(720px, 88%);
+    bottom: 10%;
+  }
+
+  .cf-plate {
+    width: 160px;
+  }
+
+  .cf-plate-text {
+    font-size: 22px;
+  }
+
+  .cf-plate-kr {
+    font-size: 19px;
+  }
+
+  .cf-mileage {
+    bottom: 6.5%;        /* 자동차 아랫부분과 간격 확보 */
+    font-size: .95rem;
+    gap: 6px;
+  }
+
+  .cf-control {
+    width: 48px;
+    height: 48px;
+  }
+
+  .cf-dots {
+    bottom: 14px;
+    gap: 8px;
+  }
+}
+
+/* 모바일 (작은 폰) */
+@media (max-width: 480px) {
+  .navbar .container-fluid {
+    padding-right: max(.6rem, env(safe-area-inset-right));
+    padding-left:  max(.6rem, env(safe-area-inset-left));
+  }
+
+  .cf-section-title {
+    font-size: .9rem;
+    margin: 10px 0 6px 0;
+  }
+
+  .cf-carousel {
+    width: calc(100% - 16px);
+    margin: 8px auto;
+    border-radius: 20px;
+    padding-bottom: 54px; /* dots와 footer 간 여유 조금 더 */
+  }
+
+  .cf-slide-topbar {
+    top: 16px;
+    left: 16px;
+    right: 16px;
+  }
+
+  .cf-top-title {
+    font-size: 1.3rem;
+  }
+
+  .cf-btn {
+    padding: 7px 12px;
+    font-size: .9rem;
+  }
+
+  .cf-hero-img {
+    width: min(640px, 92%);
+    bottom: 12%;
+  }
+
+  .cf-plate {
+    width: 140px;
+  }
+
+  .cf-plate-text {
+    font-size: 19px;
+    letter-spacing: 1.5px;
+  }
+
+  .cf-plate-kr {
+    font-size: 17px;
+  }
+
+  .cf-mileage {
+    bottom: 9%;
+    font-size: .9rem;
+  }
+
+  .cf-mileage-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .cf-control {
+    width: 50px;              /* 터치 타겟 크게 */
+    height: 50px;
+  }
+
+  .cf-dots {
+    bottom: 18px;             /* 손가락으로 눌러도 footer와 안겹치게 */
+    gap: 8px;
+  }
+
+  /* 인포 박스 가독성 */
+  .cf-info-box {
+    padding: 28px 16px;
+    font-size: .95rem;
+  }
+}
+
+/* 아주 작은 기기(아이폰 SE 등) 추가 보정 */
+@media (max-width: 360px) {
+  .cf-hero-img { bottom: 13.5%; }
+  .cf-mileage { bottom: 10.5%; font-size: .88rem; }
+  .cf-plate { width: 128px; }
+  .cf-plate-text { font-size: 18px; }
+  .cf-plate-kr { font-size: 16px; }
+}
