@@ -828,3 +828,11 @@ body[data-theme="light"] .cf-mileage {
 
 /* 드래그 중 커서 표시 */
 .cf-carousel-viewport.is-grabbing { cursor: grabbing; cursor: -webkit-grabbing; }
+
+/* 링크/버튼에서 더블탭 확대 방지 힌트 */
+a, button, .btn, [role="button"] {
+  touch-action: manipulation; /* 모바일 브라우저가 더블탭 확대 대신 클릭 처리 */
+}
+
+/* iOS 글자 자동확대 방지(큰 텍스트에서 확대되는 현상 완화) */
+html { -webkit-text-size-adjust: 100%; }
