@@ -89,11 +89,8 @@ body[data-theme="dark"] {
   position: relative;
   flex: 1 1 auto;
   max-width: 600px;
-  /* 데스크톱 최대 폭 */
   width: calc(100% - 40px);
-  /* 기본 좌우 20px 여백 */
   margin: 20px auto;
-  /* 중앙 정렬 */
   border-radius: 24px;
   background: linear-gradient(180deg, var(--container-top), var(--container-btm));
   border: 1px solid var(--line-color);
@@ -106,9 +103,7 @@ body[data-theme="dark"] {
 @media (max-width: 768px) {
   .cf-carousel {
     width: calc(100% - 40px);
-    /* 좌우 총 40px */
     margin: 20px;
-    /* 상하좌우 20px */
   }
 }
 
@@ -164,7 +159,6 @@ body[data-theme="dark"] {
   justify-content: space-between;
   align-items: center;
   z-index: 6;
-  /* ❗️핵심: pointer-events 를 제거하여 버튼 클릭 보장 */
 }
 
 .cf-top-title {
@@ -172,7 +166,72 @@ body[data-theme="dark"] {
   color: var(--text-color);
 }
 
-/* 버튼 (클릭 허용) */
+/* 🆕 Topbar Left Block — Grid layout (배지 | 제목/서브텍스트) */
+.cf-topblock {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-auto-rows: min-content;
+  column-gap: .5rem;
+  align-items: center;
+}
+
+.cf-topblock .cf-badge {
+  grid-column: 1;
+  grid-row: 1 / span 3;
+  display: block;
+}
+
+.cf-topblock .cf-top-title {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+/* (공통) 자막 기본 스타일 — 단일줄/다중줄 모두 동일 규칙 */
+.cf-topblock .cf-subtitle,
+.cf-subinfo .cf-subtitle {
+  font-size: 0.8rem;
+  font-weight: 300;
+  opacity: .65;
+  line-height: 1.2;
+  user-select: none;
+  transition: color .25s ease, opacity .25s ease;
+  margin: 0;
+  /* p 기본 마진 제거 */
+  color: inherit;
+  /* 테마 색상 상속 */
+}
+
+/* 내부 span/br도 완전 상속 */
+.cf-topblock .cf-subtitle *,
+.cf-subinfo .cf-subtitle * {
+  font: inherit;
+  color: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  font-weight: inherit;
+}
+
+/* 테마별 컬러 톤 */
+body[data-theme="dark"] .cf-topblock .cf-subtitle,
+body[data-theme="dark"] .cf-subinfo .cf-subtitle {
+  color: rgba(255, 255, 255, .85);
+}
+
+body[data-theme="light"] .cf-topblock .cf-subtitle,
+body[data-theme="light"] .cf-subinfo .cf-subtitle {
+  color: rgba(0, 0, 0, .72);
+}
+
+/* ✅ 두 줄 표현용 컨테이너(제목 아래) */
+.cf-subinfo {
+  grid-column: 2;
+  grid-row: 2 / span 2;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* 버튼 */
 .cf-btn {
   border: 1px solid var(--line-color);
   border-radius: 10px;
@@ -259,7 +318,8 @@ body[data-theme="dark"] {
 
 .cf-control:hover {
   background: rgba(255, 255, 255, 0.15);
-  color: var(--accent);
+  color: inherit;
+  /* SVG 색상 유지 */
 }
 
 /* Dots */
@@ -498,7 +558,8 @@ body[data-theme="light"] .cf-control {
 
 body[data-theme="light"] .cf-control:hover {
   background: rgba(0, 0, 0, 0.15);
-  color: var(--accent);
+  color: inherit;
+  /* 노란색으로 바뀌지 않게 */
 }
 
 body[data-theme="light"] .cf-btn {
@@ -590,17 +651,13 @@ body[data-theme="light"] .cf-popup-box {
 }
 
 /* ===== Navbar right spacing & shrink-safe fix ===== */
-
-/* 1) 컨테이너 내부 패딩 복원(작아질수록 살짝 줄임) */
 .navbar .container-fluid {
   padding-right: 1rem;
   padding-left: 1rem;
-  /* iOS 노치 대응 */
   padding-right: max(1rem, env(safe-area-inset-right));
-  padding-left:  max(1rem, env(safe-area-inset-left));
+  padding-left: max(1rem, env(safe-area-inset-left));
 }
 
-/* 좁은 화면에서는 패딩을 살짝만 */
 @media (max-width: 576px) {
   .navbar .container-fluid {
     padding-right: .75rem;
@@ -608,32 +665,29 @@ body[data-theme="light"] .cf-popup-box {
   }
 }
 
-/* 2) 오른쪽 버튼 묶음에 최소 여백 추가 */
-.navbar .container-fluid > .d-flex.align-items-center.gap-3 {
+.navbar .container-fluid>.d-flex.align-items-center.gap-3 {
   margin-right: .25rem;
 }
 
-/* 3) 텍스트가 공간을 다 먹어버리지 않게: 수축 허용 + 최대폭 제한 */
-.navbar .container-fluid > .d-flex,
+.navbar .container-fluid>.d-flex,
 .cf-welcome-text {
-  min-width: 0;              /* flex 항목 내용 수축 허용 */
+  min-width: 0;
 }
+
 .cf-welcome-text {
-  max-width: 40vw;           /* 너무 길면 줄여서 ... 처리 */
+  max-width: 40vw;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-/* 4) Logout 버튼은 수축 금지(끝에 여백 유지에 도움) */
 .btn-logout {
   flex: 0 0 auto;
-  margin-right: 4px;         /* 시각적 여유 */
+  margin-right: 4px;
 }
 
-/* 5) 초좁은 화면에서 내부 간격도 살짝 줄이기 */
 @media (max-width: 420px) {
-  .navbar .container-fluid > .d-flex.align-items-center.gap-3 {
+  .navbar .container-fluid>.d-flex.align-items-center.gap-3 {
     gap: .5rem !important;
   }
 }
@@ -641,7 +695,7 @@ body[data-theme="light"] .cf-popup-box {
 /* ===== Car Mileage (주행거리 표시) ===== */
 .cf-mileage {
   position: absolute;
-  bottom: 1%; /* 🔹 자동차 밑 살짝 위 */
+  bottom: 1%;
   left: 50%;
   transform: translateX(-50%);
   color: var(--text-color);
@@ -680,12 +734,10 @@ body[data-theme="light"] .cf-mileage {
 }
 
 /* ===== Responsive tweaks ===== */
-/* 태블릿 이하 */
 @media (max-width: 768px) {
-  /* 내비 패딩 살짝 축소(세이프 에어리어 유지) */
   .navbar .container-fluid {
     padding-right: max(.75rem, env(safe-area-inset-right));
-    padding-left:  max(.75rem, env(safe-area-inset-left));
+    padding-left: max(.75rem, env(safe-area-inset-left));
   }
 
   .cf-section-title {
@@ -697,7 +749,7 @@ body[data-theme="light"] .cf-mileage {
     max-width: 640px;
     width: calc(100% - 24px);
     margin: 12px auto;
-    padding-bottom: 48px; /* dots + footer 간 여유 */
+    padding-bottom: 48px;
   }
 
   .cf-slide {
@@ -722,7 +774,7 @@ body[data-theme="light"] .cf-mileage {
   }
 
   .cf-mileage {
-    bottom: 6.5%;        /* 자동차 아랫부분과 간격 확보 */
+    bottom: 6.5%;
     font-size: .95rem;
     gap: 6px;
   }
@@ -738,11 +790,10 @@ body[data-theme="light"] .cf-mileage {
   }
 }
 
-/* 모바일 (작은 폰) */
 @media (max-width: 480px) {
   .navbar .container-fluid {
     padding-right: max(.6rem, env(safe-area-inset-right));
-    padding-left:  max(.6rem, env(safe-area-inset-left));
+    padding-left: max(.6rem, env(safe-area-inset-left));
   }
 
   .cf-section-title {
@@ -754,7 +805,7 @@ body[data-theme="light"] .cf-mileage {
     width: calc(100% - 16px);
     margin: 8px auto;
     border-radius: 20px;
-    padding-bottom: 54px; /* dots와 footer 간 여유 조금 더 */
+    padding-bottom: 54px;
   }
 
   .cf-slide-topbar {
@@ -801,38 +852,194 @@ body[data-theme="light"] .cf-mileage {
   }
 
   .cf-control {
-    width: 50px;              /* 터치 타겟 크게 */
+    width: 50px;
     height: 50px;
   }
 
   .cf-dots {
-    bottom: 18px;             /* 손가락으로 눌러도 footer와 안겹치게 */
+    bottom: 18px;
     gap: 8px;
-  }
-
-  /* 인포 박스 가독성 */
-  .cf-info-box {
-    padding: 28px 16px;
-    font-size: .95rem;
   }
 }
 
-/* 아주 작은 기기(아이폰 SE 등) 추가 보정 */
 @media (max-width: 360px) {
-  .cf-hero-img { bottom: 13.5%; }
-  .cf-mileage { bottom: 10.5%; font-size: .88rem; }
-  .cf-plate { width: 128px; }
-  .cf-plate-text { font-size: 18px; }
-  .cf-plate-kr { font-size: 16px; }
+  .cf-hero-img {
+    bottom: 13.5%;
+  }
+
+  .cf-mileage {
+    bottom: 10.5%;
+    font-size: .88rem;
+  }
+
+  .cf-plate {
+    width: 128px;
+  }
+
+  .cf-plate-text {
+    font-size: 18px;
+  }
+
+  .cf-plate-kr {
+    font-size: 16px;
+  }
 }
 
 /* 드래그 중 커서 표시 */
-.cf-carousel-viewport.is-grabbing { cursor: grabbing; cursor: -webkit-grabbing; }
-
-/* 링크/버튼에서 더블탭 확대 방지 힌트 */
-a, button, .btn, [role="button"] {
-  touch-action: manipulation; /* 모바일 브라우저가 더블탭 확대 대신 클릭 처리 */
+.cf-carousel-viewport.is-grabbing {
+  cursor: grabbing;
+  cursor: -webkit-grabbing;
 }
 
-/* iOS 글자 자동확대 방지(큰 텍스트에서 확대되는 현상 완화) */
-html { -webkit-text-size-adjust: 100%; }
+/* 링크/버튼에서 더블탭 확대 방지 힌트 */
+a,
+button,
+.btn,
+[role="button"] {
+  touch-action: manipulation;
+}
+
+/* iOS 글자 자동확대 방지 */
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+/* ===============================
+   Connector: Plate → Hero (absolute)
+   =============================== */
+.cf-slide {
+  position: relative;
+}
+
+.cf-connector-abs {
+  position: absolute;
+  width: 2px;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.cf-connector-abs .cf-line {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.2));
+}
+
+.cf-connector-abs .cf-dot {
+  position: absolute;
+  left: 50%;
+  bottom: -5px;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
+}
+
+/* =========================================
+   ✨ Connector animations (no duplicates)
+   ========================================= */
+@keyframes cfLinePulse {
+
+  0%,
+  100% {
+    opacity: .8;
+  }
+
+  50% {
+    opacity: .3;
+  }
+}
+
+@keyframes cfDotGlow {
+
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
+  }
+
+  50% {
+    opacity: .65;
+    box-shadow: 0 0 14px rgba(255, 255, 255, 0.9);
+  }
+}
+
+@keyframes cfLinePulseLight {
+
+  0%,
+  100% {
+    opacity: .75;
+  }
+
+  50% {
+    opacity: .35;
+  }
+}
+
+@keyframes cfDotGlowLight {
+
+  0%,
+  100% {
+    opacity: .95;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.25);
+  }
+
+  50% {
+    opacity: .6;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
+  }
+}
+
+/* 🔁 애니메이션 적용은 테마에서만 */
+body[data-theme="dark"] .cf-connector-abs .cf-line {
+  animation: cfLinePulse 2.8s ease-in-out infinite;
+}
+
+body[data-theme="dark"] .cf-connector-abs .cf-dot {
+  animation: cfDotGlow 2.8s ease-in-out infinite;
+}
+
+body[data-theme="light"] .cf-connector-abs .cf-line {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.15));
+  animation: cfLinePulseLight 2.8s ease-in-out infinite;
+}
+
+body[data-theme="light"] .cf-connector-abs .cf-dot {
+  background: #111;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.25);
+  animation: cfDotGlowLight 2.8s ease-in-out infinite;
+}
+
+/* ================================
+   🚗 Navbar Logo Style
+   ================================ */
+.cf-logo {
+  height: 28px;
+  width: auto;
+  object-fit: contain;
+  user-select: none;
+  pointer-events: none;
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.25));
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.navbar-brand:hover .cf-logo {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.5));
+}
+
+@media (max-width: 768px) {
+  .cf-logo {
+    height: 22px;
+  }
+}
+
+.cf-mileage-value {
+  color: #4CAF50;
+  /* 밝은 초록색 */
+  font-weight: 500;
+}

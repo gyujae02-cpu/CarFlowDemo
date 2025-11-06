@@ -22,7 +22,8 @@
         <div class="container-fluid d-flex justify-content-between align-items-center">
             <!-- 왼쪽: 브랜드 -->
             <a class="navbar-brand d-flex align-items-center gap-2" href="/">
-                CARFLOW
+                <img src="img/CARFLOW_Logo_Dark.png" data-src-dark="img/CARFLOW_Logo_Dark.png"
+                    data-src-light="img/CARFLOW_Logo_Light.png" alt="CARFLOW Logo" class="cf-logo" />
             </a>
 
             <!-- 오른쪽: 테마 토글 → Welcome → Logout -->
@@ -46,42 +47,55 @@
                         <section class="cf-slide is-active" id="slide-1" aria-label="Slide 1">
                             <!-- Topbar -->
                             <div class="cf-slide-topbar">
-                                <div class="d-flex align-items-center gap-2 position-relative">
+                                <div class="cf-topblock">
                                     <img class="cf-badge" src="img/Genesis_Logo_Dark.png"
                                         data-src-dark="img/Genesis_Logo_Dark.png"
                                         data-src-light="img/Genesis_Logo_Light.png" alt="Badge" />
                                     <h3 class="cf-top-title m-0">G80 BLACK</h3>
+                                    <div class="cf-subinfo">
+                                        <p class="cf-subtitle">
+                                            Owner: Guest, Registered: <span class="reg-date"></span>
+                                        </p>
+                                        <p class="cf-subtitle">
+                                            <span class="cf-conn">Connection: Stable 🟢</span>
+                                        </p>
+                                    </div>
                                 </div>
-                                <button class="cf-btn cf-btn-select cf-popup-btn" type="button">View Details</button>
+                                <button class="cf-btn cf-btn-select cf-popup-btn" type="button">Details</button>
                             </div>
 
-                            <!-- Centered plate -->
                             <div class="cf-plate-container">
                                 <img src="img/Number_Plate.png" alt="Number Plate" class="cf-plate" />
                                 <div class="cf-plate-text">111<span class="cf-plate-kr">차 </span>1234</div>
                             </div>
 
-                            <!-- ✅ 주행거리 -->
                             <div class="cf-mileage">
                                 <img src="img/local_gas_station_24dp_999999_FILL0_wght400_GRAD0_opsz24.svg"
                                     alt="Mileage Icon" class="cf-mileage-icon" />
-                                    Fuel Level : 100%
+                                Fuel Level : <span class="cf-mileage-value">100%</span>
                             </div>
 
-                            <!-- Hero image -->
                             <img class="cf-hero-img" src="img/G80_Black.png" alt="Driving Summary Graphic" />
                         </section>
 
                         <!-- Slide 2 -->
                         <section class="cf-slide" id="slide-2" aria-label="Slide 2">
                             <div class="cf-slide-topbar">
-                                <div class="d-flex align-items-center gap-2 position-relative">
+                                <div class="cf-topblock">
                                     <img class="cf-badge" src="img/Genesis_Logo_Dark.png"
                                         data-src-dark="img/Genesis_Logo_Dark.png"
                                         data-src-light="img/Genesis_Logo_Light.png" alt="Badge" />
                                     <h3 class="cf-top-title m-0">G90 BLACK</h3>
+                                    <div class="cf-subinfo">
+                                        <p class="cf-subtitle">
+                                            Owner: Guest, Registered: <span class="reg-date"></span>
+                                        </p>
+                                        <p class="cf-subtitle">
+                                            <span class="cf-conn">Connection: Stable 🟢</span>
+                                        </p>
+                                    </div>
                                 </div>
-                                <button class="cf-btn cf-btn-select cf-popup-btn" type="button">View Details</button>
+                                <button class="cf-btn cf-btn-select cf-popup-btn" type="button">Details</button>
                             </div>
 
                             <div class="cf-plate-container">
@@ -89,11 +103,10 @@
                                 <div class="cf-plate-text">222<span class="cf-plate-kr">차 </span>1234</div>
                             </div>
 
-                            <!-- ✅ 주행거리 -->
                             <div class="cf-mileage">
                                 <img src="img/local_gas_station_24dp_999999_FILL0_wght400_GRAD0_opsz24.svg"
                                     alt="Mileage Icon" class="cf-mileage-icon" />
-                                    Fuel Level : 100%
+                                Fuel Level : <span class="cf-mileage-value">100%</span>
                             </div>
 
                             <img class="cf-hero-img" src="img/G90_Black.png" alt="Driving Summary Graphic" />
@@ -102,13 +115,21 @@
                         <!-- Slide 3 -->
                         <section class="cf-slide" id="slide-3" aria-label="Slide 3">
                             <div class="cf-slide-topbar">
-                                <div class="d-flex align-items-center gap-2 position-relative">
+                                <div class="cf-topblock">
                                     <img class="cf-badge" src="img/Genesis_Logo_Dark.png"
                                         data-src-dark="img/Genesis_Logo_Dark.png"
                                         data-src-light="img/Genesis_Logo_Light.png" alt="Badge" />
                                     <h3 class="cf-top-title m-0">GV80 BLACK</h3>
+                                    <div class="cf-subinfo">
+                                        <p class="cf-subtitle">
+                                            Owner: Guest, Registered: <span class="reg-date"></span>
+                                        </p>
+                                        <p class="cf-subtitle">
+                                            <span class="cf-conn">Connection: Stable 🟢</span>
+                                        </p>
+                                    </div>
                                 </div>
-                                <button class="cf-btn cf-btn-select cf-popup-btn" type="button">View Details</button>
+                                <button class="cf-btn cf-btn-select cf-popup-btn" type="button">Details</button>
                             </div>
 
                             <div class="cf-plate-container">
@@ -116,11 +137,10 @@
                                 <div class="cf-plate-text">333<span class="cf-plate-kr">차 </span>1234</div>
                             </div>
 
-                            <!-- ✅ 주행거리 -->
                             <div class="cf-mileage">
                                 <img src="img/local_gas_station_24dp_999999_FILL0_wght400_GRAD0_opsz24.svg"
                                     alt="Mileage Icon" class="cf-mileage-icon" />
-                                    Fuel Level : 100%
+                                Fuel Level : <span class="cf-mileage-value">100%</span>
                             </div>
 
                             <img class="cf-hero-img" src="img/GV80_Black.png" alt="Driving Summary Graphic" />
@@ -173,7 +193,7 @@
     <div class="cf-popup-overlay" id="cfPopup">
         <div class="cf-popup-box">
             <h3 class="cf-popup-title">Notice</h3>
-            <p class="cf-popup-message">The ‘View Details’ demo page is coming soon.</p>
+            <p class="cf-popup-message">The ‘Details’ demo page is coming soon.</p>
             <button class="cf-popup-close">OK</button>
         </div>
     </div>
