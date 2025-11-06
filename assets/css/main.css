@@ -297,3 +297,8 @@ body.blurred {
     display: block;
   }
 }
+
+#viewDemo:hover {
+  text-decoration: underline;
+  opacity: 1;
+}
