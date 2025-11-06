@@ -825,3 +825,6 @@ body[data-theme="light"] .cf-mileage {
   .cf-plate-text { font-size: 18px; }
   .cf-plate-kr { font-size: 16px; }
 }
+
+/* 드래그 중 커서 표시 */
+.cf-carousel-viewport.is-grabbing { cursor: grabbing; cursor: -webkit-grabbing; }
