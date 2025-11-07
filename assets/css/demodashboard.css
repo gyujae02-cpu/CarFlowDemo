@@ -1488,3 +1488,40 @@ body[data-theme="light"] .cf-connector-abs .cf-dot {
     bottom: 7% !important; /* 극소형 디바이스용 */
   }
 }
+
+/* ============================
+   📱 Genesis badge shrink on mobile
+   ============================ */
+@media (max-width: 768px) {
+  /* 상단 여백도 살짝 줄여 균형 */
+  .cf-slide-topbar { top: 12px; }
+
+  /* 배지 자체 크기 축소 */
+  .cf-topblock .cf-badge,
+  .cf-badge {
+    height: 16px !important;
+    width: auto;
+  }
+
+  /* 배지-텍스트 간 간격도 살짝 축소 */
+  .cf-topblock { column-gap: .4rem; }
+}
+
+@media (max-width: 480px) {
+  .cf-slide-topbar { top: 10px; left: 12px; right: 12px; }
+
+  .cf-topblock .cf-badge,
+  .cf-badge {
+    height: 14px !important;
+  }
+
+  .cf-topblock { column-gap: .35rem; }
+}
+
+/* 극소형 기기 */
+@media (max-width: 360px) {
+  .cf-topblock .cf-badge,
+  .cf-badge {
+    height: 13px !important;
+  }
+}
