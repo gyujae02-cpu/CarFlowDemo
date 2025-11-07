@@ -343,6 +343,25 @@
     </div>
 
     <script src="assets/js/demodashboard.js"></script>
+
+    <script>
+        (function () {
+            const path = window.location.pathname;
+
+            // ✅ 허용할 경로들 (화이트리스트)
+            const allowedPaths = [
+                "/",                     // 루트 접근 (https://carflow.kr/)
+                "/index", "/index.html", // 메인 로그인
+                "/demodashboard", "/demodashboard.html", // 데모 대시보드
+                "/404.html"              // 404 페이지 자체
+            ];
+
+            // 현재 경로가 허용되지 않았다면 404 페이지로 이동
+            if (!allowedPaths.includes(path)) {
+                window.location.replace("/404.html");
+            }
+        })();
+    </script>
 </body>
 
 </html>
