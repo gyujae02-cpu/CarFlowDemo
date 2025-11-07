@@ -1467,3 +1467,24 @@ body[data-theme="light"] .cf-connector-abs .cf-dot {
     min-height: 40px;
   }
 }
+
+/* ============================
+   📱 Fuel Level spacing fix for mobile
+   ============================ */
+@media (max-width: 768px) {
+  .cf-mileage {
+    bottom: 4.5% !important; /* 기존보다 약간 내려감 */
+  }
+}
+
+@media (max-width: 480px) {
+  .cf-mileage {
+    bottom: 6% !important; /* 더 작은 화면에서는 더 여유 */
+  }
+}
+
+@media (max-width: 360px) {
+  .cf-mileage {
+    bottom: 7% !important; /* 극소형 디바이스용 */
+  }
+}
