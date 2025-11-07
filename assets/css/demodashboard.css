@@ -196,9 +196,7 @@ body[data-theme="dark"] {
   user-select: none;
   transition: color .25s ease, opacity .25s ease;
   margin: 0;
-  /* p 기본 마진 제거 */
   color: inherit;
-  /* 테마 색상 상속 */
 }
 
 /* 내부 span/br도 완전 상속 */
@@ -247,7 +245,6 @@ body[data-theme="light"] .cf-subinfo .cf-subtitle {
 /* 버튼 기본 포지션 설정 */
 .cf-btn {
   position: relative;
-  /* 🔑 자식 요소 기준점 */
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -257,9 +254,7 @@ body[data-theme="light"] .cf-subinfo .cf-subtitle {
 .cf-badge-dot {
   position: absolute;
   top: -2px;
-  /* 버튼 상단에서 거리 */
   right: -4px;
-  /* 버튼 오른쪽에서 거리 */
   width: 10px;
   height: 10px;
   background-color: #ff4d4d;
@@ -358,7 +353,6 @@ body[data-theme="light"] .cf-subinfo .cf-subtitle {
 .cf-control:hover {
   background: rgba(255, 255, 255, 0.15);
   color: inherit;
-  /* SVG 색상 유지 */
 }
 
 /* Dots */
@@ -598,7 +592,6 @@ body[data-theme="light"] .cf-control {
 body[data-theme="light"] .cf-control:hover {
   background: rgba(0, 0, 0, 0.15);
   color: inherit;
-  /* 노란색으로 바뀌지 않게 */
 }
 
 body[data-theme="light"] .cf-btn {
@@ -660,8 +653,9 @@ body[data-theme="light"] .cf-hero-img:hover {
 }
 
 body[data-theme="light"] .cf-popup-box {
-  background: rgba(255, 255, 255, 0.85);
-  color: #000;
+  background: rgba(255, 255, 255, 0.92);
+  color: #111;
+  border-color: rgba(0, 0, 0, .12);
 }
 
 .cf-popup-title {
@@ -1086,18 +1080,19 @@ body[data-theme="light"] .cf-connector-abs .cf-dot {
 /* 연료 수준별 색상 */
 .cf-mileage-value.high {
   color: #4ef54e;
-  /* 🟢 70~100% */
 }
 
+/* 🟢 70~100% */
 .cf-mileage-value.medium {
   color: #ffcc33;
-  /* 🟡 30~69% */
 }
 
+/* 🟡 30~69% */
 .cf-mileage-value.low {
   color: #ff4d4d;
-  /* 🔴 0~29% */
 }
+
+/* 🔴 0~29% */
 
 .cf-warning-text {
   position: absolute;
@@ -1181,25 +1176,23 @@ body[data-theme="light"] .cf-connector-abs .cf-dot {
   html {
     font-size: 93.75%;
   }
-
-  /* 15px 기준 */
 }
 
+/* 15px 기준 */
 @media (max-width: 480px) {
   html {
     font-size: 87.5%;
   }
-
-  /* 14px 기준 */
 }
 
+/* 14px 기준 */
 @media (max-width: 360px) {
   html {
     font-size: 81.25%;
   }
-
-  /* 13px 기준 */
 }
+
+/* 13px 기준 */
 
 /* 네비게이션/브랜드 영역 더 컴팩트 */
 @media (max-width: 768px) {
@@ -1473,55 +1466,330 @@ body[data-theme="light"] .cf-connector-abs .cf-dot {
    ============================ */
 @media (max-width: 768px) {
   .cf-mileage {
-    bottom: 4.5% !important; /* 기존보다 약간 내려감 */
+    bottom: 4.5% !important;
   }
 }
 
 @media (max-width: 480px) {
   .cf-mileage {
-    bottom: 6% !important; /* 더 작은 화면에서는 더 여유 */
+    bottom: 6% !important;
   }
 }
 
 @media (max-width: 360px) {
   .cf-mileage {
-    bottom: 7% !important; /* 극소형 디바이스용 */
+    bottom: 7% !important;
   }
 }
 
 /* ============================
-   📱 Genesis badge shrink on mobile
+   📱 Genesis badge shrink — multi-breakpoint adaptive
    ============================ */
-@media (max-width: 768px) {
-  /* 상단 여백도 살짝 줄여 균형 */
-  .cf-slide-topbar { top: 12px; }
+@media (max-width: 1024px) {
 
-  /* 배지 자체 크기 축소 */
   .cf-topblock .cf-badge,
   .cf-badge {
-    height: 16px !important;
+    height: 18px !important;
     width: auto;
   }
 
-  /* 배지-텍스트 간 간격도 살짝 축소 */
-  .cf-topblock { column-gap: .4rem; }
+  .cf-topblock {
+    column-gap: .45rem;
+  }
+}
+
+@media (max-width: 820px) {
+  .cf-slide-topbar {
+    top: 14px;
+    left: 16px;
+    right: 16px;
+  }
+
+  .cf-topblock .cf-badge,
+  .cf-badge {
+    height: 17px !important;
+  }
+
+  .cf-topblock {
+    column-gap: .4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .cf-slide-topbar {
+    top: 12px;
+    left: 14px;
+    right: 14px;
+  }
+
+  .cf-topblock .cf-badge,
+  .cf-badge {
+    height: 16px !important;
+  }
+
+  .cf-topblock {
+    column-gap: .38rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .cf-slide-topbar {
+    top: 11px;
+    left: 12px;
+    right: 12px;
+  }
+
+  .cf-topblock .cf-badge,
+  .cf-badge {
+    height: 15px !important;
+  }
+
+  .cf-topblock {
+    column-gap: .36rem;
+  }
 }
 
 @media (max-width: 480px) {
-  .cf-slide-topbar { top: 10px; left: 12px; right: 12px; }
+  .cf-slide-topbar {
+    top: 10px;
+    left: 12px;
+    right: 12px;
+  }
 
   .cf-topblock .cf-badge,
   .cf-badge {
     height: 14px !important;
   }
 
-  .cf-topblock { column-gap: .35rem; }
+  .cf-topblock {
+    column-gap: .35rem;
+  }
 }
 
-/* 극소형 기기 */
+@media (max-width: 400px) {
+
+  .cf-topblock .cf-badge,
+  .cf-badge {
+    height: 13.5px !important;
+  }
+
+  .cf-topblock {
+    column-gap: .33rem;
+  }
+}
+
 @media (max-width: 360px) {
+
   .cf-topblock .cf-badge,
   .cf-badge {
     height: 13px !important;
   }
+
+  .cf-topblock {
+    column-gap: .3rem;
+  }
+}
+
+/* 🔆 Light mode contrast fixes
+   - 라이트 모드에서 경고 텍스트/서브텍스트/도트 네비/버튼 대비 강화
+*/
+body[data-theme="light"] .cf-warning-text.normal {
+  color: #1e7a1e;
+  text-shadow: none;
+}
+
+body[data-theme="light"] .cf-warning-text.warning {
+  color: #b38300;
+  text-shadow: none;
+}
+
+body[data-theme="light"] .cf-warning-text.critical {
+  color: #c22727;
+  text-shadow: none;
+}
+
+body[data-theme="light"] .cf-warning-sub {
+  color: #333;
+  opacity: .92;
+}
+
+body[data-theme="light"] .cf-dots .cf-dot {
+  background: #fff;
+  border-color: rgba(0, 0, 0, .5);
+  box-shadow: 0 0 3px rgba(0, 0, 0, .15);
+}
+
+body[data-theme="light"] .cf-dots .cf-dot.is-active {
+  background: #111;
+  border-color: #111;
+  box-shadow: 0 0 6px rgba(0, 0, 0, .3);
+}
+
+body[data-theme="light"] .cf-btn {
+  background: rgba(0, 0, 0, 0.06);
+  border-color: rgba(0, 0, 0, .12);
+}
+
+body[data-theme="light"] .cf-btn:hover {
+  background: rgba(0, 0, 0, 0.10);
+}
+
+body[data-theme="light"] .cf-slide-inner {
+  background: rgba(255, 255, 255, 0.72);
+  border-color: rgba(0, 0, 0, .08);
+}
+
+body[data-theme="light"] .cf-info-thanks {
+  color: #000;
+}
+
+/* === Light mode contrast: stronger sub status + fuel label === */
+body[data-theme="light"] .cf-warning-sub {
+  color: #111;
+  /* 거의 블랙에 가까운 진한 회색 */
+  opacity: 1;
+  /* 완전 불투명 */
+  font-weight: 500;
+  /* 살짝 강조 */
+  text-shadow: none;
+}
+
+body[data-theme="light"] .cf-mileage {
+  color: #111;
+  /* Fuel Level : 라벨도 블랙 */
+  text-shadow: none;
+  font-weight: 500;
+}
+
+/* Fuel Level 값 색상 대비 강화 */
+body[data-theme="light"] .cf-mileage-value.high {
+  color: #009944;
+  /* ✅ 더 선명한 초록 */
+}
+
+body[data-theme="light"] .cf-mileage-value.medium {
+  color: #e6a600;
+  /* ⚠️ 진한 노랑 */
+}
+
+body[data-theme="light"] .cf-mileage-value.low {
+  color: #d92626;
+  /* 🔴 진한 빨강 */
+}
+
+/* 연료 아이콘 선명도 보강 */
+body[data-theme="light"] .cf-mileage-icon {
+  opacity: 1;
+  filter: drop-shadow(0 0 2px rgba(0, 0, 0, .25));
+}
+
+/* === Light mode contrast: Top info + Details button (no font-weight change) === */
+
+/* 🔸 Owner / Registered / Connection 텍스트 진하게 */
+body[data-theme="light"] .cf-topblock .cf-subtitle,
+body[data-theme="light"] .cf-subinfo .cf-subtitle {
+  color: #111 !important;   /* 더 진한 회색으로 */
+  opacity: 1;
+  text-shadow: none;
+}
+
+/* 🔸 Connection 상태 점도 선명하게 */
+body[data-theme="light"] .cf-conn {
+  color: #000;
+}
+body[data-theme="light"] .cf-conn .cf-dot {
+  filter: drop-shadow(0 0 2px rgba(0,0,0,0.3));
+}
+
+/* 🔸 Details 버튼 */
+body[data-theme="light"] .cf-btn-select {
+  background: rgba(0,0,0,0.06);
+  border: 1px solid rgba(0,0,0,0.15);
+  color: #111;
+  font-weight: 300;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+body[data-theme="light"] .cf-btn-select:hover {
+  background: rgba(0,0,0,0.12);
+  color: #000;
+  transform: scale(1.03);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+
+body[data-theme="light"] .cf-btn-select:active {
+  transform: scale(0.97);
+  box-shadow: 0 1px 6px rgba(0,0,0,0.18);
+}
+
+/* === Light mode contrast: Notice popup text === */
+body[data-theme="light"] .cf-popup-box {
+  background: rgba(255, 255, 255, 0.95); /* 약간 더 밝은 배경 */
+  color: #111;                           /* 전체 텍스트 기본색 진하게 */
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+
+/* 제목 (Notice) */
+body[data-theme="light"] .cf-popup-title {
+  color: #000; /* 완전 검정으로 */
+}
+
+/* 본문 (The ‘Details’ demo page...) */
+body[data-theme="light"] .cf-popup-message {
+  color: #111;  /* 중간 진한 회색으로 */
+  font-weight: 300;
+  opacity: 1;   /* 투명도 제거 */
+}
+
+/* OK 버튼 대비 강화 */
+body[data-theme="light"] .cf-popup-close {
+  background: #000;
+  color: #fff;
+  border: none;
+}
+body[data-theme="light"] .cf-popup-close:hover {
+  background: #333;
+  transform: scale(1.03);
+}
+
+/* === Light mode contrast: Navbar Welcome text === */
+body[data-theme="light"] .cf-welcome-text {
+  color: #111 !important;   /* 진한 검정 */
+  font-weight: 300;
+  opacity: 1;
+  text-shadow: none;
+}
+
+/* Guest 등의 서브 텍스트도 동일하게 */
+body[data-theme="light"] .navbar .cf-welcome-text span {
+  color: #111 !important;
+}
+
+/* 다크 모드에서는 유지 */
+body[data-theme="dark"] .cf-welcome-text {
+  color: #f5f5f5;
+  opacity: 0.95;
+}
+
+/* === Light mode contrast: Info section & disclaimer text === */
+body[data-theme="light"] .cf-info-box {
+  color: #111;              /* 전체 본문 진하게 */
+  opacity: 1;
+}
+
+body[data-theme="light"] .cf-info-box strong {
+  color: #000;              /* 강조 문구 더 진하게 */
+}
+
+body[data-theme="light"] .cf-info-box a {
+  color: #ffb703;           /* Instagram 링크 색 유지 (기존 accent) */
+  text-decoration: none;
+}
+
+body[data-theme="light"] .cf-info-box a:hover {
+  color: #d69100;           /* hover 시 조금 어둡게 */
+}
+
+body[data-theme="light"] .cf-info-thanks {
+  color: #000;              /* "Thank you." 부분 완전 검정으로 */
 }
