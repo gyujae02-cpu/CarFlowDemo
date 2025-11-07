@@ -1688,7 +1688,8 @@ body[data-theme="light"] .cf-mileage-icon {
 /* 🔸 Owner / Registered / Connection 텍스트 진하게 */
 body[data-theme="light"] .cf-topblock .cf-subtitle,
 body[data-theme="light"] .cf-subinfo .cf-subtitle {
-  color: #111 !important;   /* 더 진한 회색으로 */
+  color: #111 !important;
+  /* 더 진한 회색으로 */
   opacity: 1;
   text-shadow: none;
 }
@@ -1697,48 +1698,54 @@ body[data-theme="light"] .cf-subinfo .cf-subtitle {
 body[data-theme="light"] .cf-conn {
   color: #000;
 }
+
 body[data-theme="light"] .cf-conn .cf-dot {
-  filter: drop-shadow(0 0 2px rgba(0,0,0,0.3));
+  filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.3));
 }
 
 /* 🔸 Details 버튼 */
 body[data-theme="light"] .cf-btn-select {
-  background: rgba(0,0,0,0.06);
-  border: 1px solid rgba(0,0,0,0.15);
+  background: rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.15);
   color: #111;
   font-weight: 300;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }
 
 body[data-theme="light"] .cf-btn-select:hover {
-  background: rgba(0,0,0,0.12);
+  background: rgba(0, 0, 0, 0.12);
   color: #000;
   transform: scale(1.03);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
 
 body[data-theme="light"] .cf-btn-select:active {
   transform: scale(0.97);
-  box-shadow: 0 1px 6px rgba(0,0,0,0.18);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.18);
 }
 
 /* === Light mode contrast: Notice popup text === */
 body[data-theme="light"] .cf-popup-box {
-  background: rgba(255, 255, 255, 0.95); /* 약간 더 밝은 배경 */
-  color: #111;                           /* 전체 텍스트 기본색 진하게 */
+  background: rgba(255, 255, 255, 0.95);
+  /* 약간 더 밝은 배경 */
+  color: #111;
+  /* 전체 텍스트 기본색 진하게 */
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
 }
 
 /* 제목 (Notice) */
 body[data-theme="light"] .cf-popup-title {
-  color: #000; /* 완전 검정으로 */
+  color: #000;
+  /* 완전 검정으로 */
 }
 
 /* 본문 (The ‘Details’ demo page...) */
 body[data-theme="light"] .cf-popup-message {
-  color: #111;  /* 중간 진한 회색으로 */
+  color: #111;
+  /* 중간 진한 회색으로 */
   font-weight: 300;
-  opacity: 1;   /* 투명도 제거 */
+  opacity: 1;
+  /* 투명도 제거 */
 }
 
 /* OK 버튼 대비 강화 */
@@ -1747,6 +1754,7 @@ body[data-theme="light"] .cf-popup-close {
   color: #fff;
   border: none;
 }
+
 body[data-theme="light"] .cf-popup-close:hover {
   background: #333;
   transform: scale(1.03);
@@ -1754,7 +1762,8 @@ body[data-theme="light"] .cf-popup-close:hover {
 
 /* === Light mode contrast: Navbar Welcome text === */
 body[data-theme="light"] .cf-welcome-text {
-  color: #111 !important;   /* 진한 검정 */
+  color: #111 !important;
+  /* 진한 검정 */
   font-weight: 300;
   opacity: 1;
   text-shadow: none;
@@ -1773,23 +1782,119 @@ body[data-theme="dark"] .cf-welcome-text {
 
 /* === Light mode contrast: Info section & disclaimer text === */
 body[data-theme="light"] .cf-info-box {
-  color: #111;              /* 전체 본문 진하게 */
+  color: #111;
+  /* 전체 본문 진하게 */
   opacity: 1;
 }
 
 body[data-theme="light"] .cf-info-box strong {
-  color: #000;              /* 강조 문구 더 진하게 */
+  color: #000;
+  /* 강조 문구 더 진하게 */
 }
 
 body[data-theme="light"] .cf-info-box a {
-  color: #ffb703;           /* Instagram 링크 색 유지 (기존 accent) */
+  color: #ffb703;
+  /* Instagram 링크 색 유지 (기존 accent) */
   text-decoration: none;
 }
 
 body[data-theme="light"] .cf-info-box a:hover {
-  color: #d69100;           /* hover 시 조금 어둡게 */
+  color: #d69100;
+  /* hover 시 조금 어둡게 */
 }
 
 body[data-theme="light"] .cf-info-thanks {
-  color: #000;              /* "Thank you." 부분 완전 검정으로 */
+  color: #000;
+  /* "Thank you." 부분 완전 검정으로 */
+}
+
+/* ============================
+   🚗 Add Vehicle — dashed only around icon+text
+   ============================ */
+.cf-add-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.cf-add-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 40px 60px;
+
+  border: 2px dashed rgba(255, 255, 255, 0.25);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text-color);
+  transition: all 0.25s ease;
+}
+
+.cf-add-item:hover {
+  border-color: rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.06);
+  transform: scale(1.02);
+}
+
+/* ➕ 아이콘 */
+.cf-add-icon {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  line-height: 1;
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.cf-add-item:hover .cf-add-icon {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.08);
+}
+
+/* 텍스트 */
+.cf-add-text {
+  margin: 0;
+  font-size: 1.3rem;
+  letter-spacing: 0.5px;
+}
+
+/* ============================
+   🔆 Light mode — Add Vehicle 카드 대비 보정
+   ============================ */
+body[data-theme="light"] .cf-add-item {
+  border-color: rgba(0, 0, 0, 0.22);        /* 점선 진하게 */
+  background: rgba(255, 255, 255, 0.98);    /* 거의 흰색 */
+  color: #111;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+body[data-theme="light"] .cf-add-item:hover {
+  border-color: rgba(0, 0, 0, 0.35);
+  background: #ffffff;
+  transform: scale(1.02);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.12);
+}
+
+/* ➕ 동그라미 아이콘 */
+body[data-theme="light"] .cf-add-icon {
+  background: rgba(0, 0, 0, 0.05);
+  color: #111;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.10);
+}
+
+body[data-theme="light"] .cf-add-item:hover .cf-add-icon {
+  background: rgba(0, 0, 0, 0.08);
+  transform: scale(1.08);
+}
+
+/* 텍스트도 라이트 모드에서 또렷하게 */
+body[data-theme="light"] .cf-add-text {
+  color: #111;
 }
