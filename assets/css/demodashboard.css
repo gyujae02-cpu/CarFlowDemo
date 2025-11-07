@@ -107,6 +107,7 @@ body[data-theme="light"] {
 }
 
 .cf-welcome-text {
+  font-weight: 300;
   max-width: 40vw;
   white-space: nowrap;
   overflow: hidden;
@@ -537,6 +538,7 @@ footer {
 .footer-text {
   color: var(--text-muted);
   font-size: .92rem;
+  font-weight: 300;
 }
 
 /* Plate */
@@ -753,6 +755,7 @@ body[data-theme="light"] .cf-mileage-value.low { color: #d92626; }
 
 .cf-warning-sub {
   font-size: 0.85rem;
+  font-weight: 500;
   color: #cccccc;
   margin-top: 0.3rem;
   opacity: 0.85;
