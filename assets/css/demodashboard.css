@@ -2,7 +2,7 @@
    CARFLOW Demo — Deep Black Luxe Theme
    ========================================= */
 
-/* 전체 폰트 & 전환 */
+/* Global */
 * {
   font-family: 'Montserrat', 'Segoe UI', sans-serif;
   font-weight: 100;
@@ -13,14 +13,10 @@
 html,
 body {
   height: 100%;
-}
-
-html,
-body {
   overflow: hidden;
 }
 
-/* ✅ 페이지 스크롤 방지 */
+/* Page */
 body {
   min-height: 100dvh;
   margin: 0;
@@ -35,15 +31,7 @@ body {
   --footer-h: 56px;
 }
 
-.main-content {
-  flex: 1 1 auto;
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
-  padding-bottom: var(--footer-h);
-}
-
-/* Theme Variables */
+/* Theme Variables: Dark */
 body[data-theme="dark"] {
   --bg-color: #000;
   --text-color: #F5F5F5;
@@ -55,6 +43,29 @@ body[data-theme="dark"] {
   --container-btm: #1A1A1A;
   --focus: #7FA3FF;
   --accent: #FFD166;
+}
+
+/* Theme Variables: Light */
+body[data-theme="light"] {
+  --bg-color: #f7f8fa;
+  --text-color: #111;
+  --text-muted: #555;
+  --nav-bg: rgba(255, 255, 255, 0.85);
+  --footer-bg: rgba(255, 255, 255, 0.92);
+  --line-color: rgba(0, 0, 0, 0.08);
+  --container-top: #ffffff;
+  --container-btm: #f1f3f5;
+  --focus: #3c6fe8;
+  --accent: #ffb703;
+}
+
+/* Main layout */
+.main-content {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding-bottom: var(--footer-h);
 }
 
 /* NAV */
@@ -78,6 +89,70 @@ body[data-theme="dark"] {
   width: auto;
 }
 
+/* Navbar spacing & welcome text */
+.navbar .container-fluid {
+  padding-right: max(1rem, env(safe-area-inset-right));
+  padding-left: max(1rem, env(safe-area-inset-left));
+  flex-wrap: nowrap !important;
+  min-width: 0;
+}
+
+.navbar .container-fluid > .d-flex.align-items-center.gap-3 {
+  margin-right: .25rem;
+}
+
+.navbar .container-fluid > .d-flex,
+.cf-welcome-text {
+  min-width: 0;
+}
+
+.cf-welcome-text {
+  max-width: 40vw;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+body[data-theme="light"] .navbar {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom-color: var(--line-color);
+}
+
+/* Logout 버튼 */
+.btn-logout {
+  border: 1px solid var(--line-color);
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-color);
+  font-size: 0.85rem;
+  border-radius: 8px;
+  padding: 6px 14px;
+  transition: all 0.25s ease;
+  flex: 0 0 auto;
+  margin-right: 4px;
+}
+
+.btn-logout:hover {
+  background: rgba(255, 255, 255, 0.9);
+  color: #000;
+  transform: scale(1.03);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+}
+
+.btn-logout:active {
+  transform: scale(0.97);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+body[data-theme="light"] .btn-logout {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--text-color);
+}
+
+body[data-theme="light"] .btn-logout:hover {
+  background: rgba(0, 0, 0, 0.15);
+}
+
 /* MAIN CONTAINER */
 .main-grid {
   flex: 1 1 auto;
@@ -85,6 +160,7 @@ body[data-theme="dark"] {
   padding: 0;
 }
 
+/* Carousel */
 .cf-carousel {
   position: relative;
   flex: 1 1 auto;
@@ -99,7 +175,11 @@ body[data-theme="dark"] {
   padding-bottom: 42px;
 }
 
-/* 모바일에서 좌우 20px 여백 보장 */
+body[data-theme="light"] .cf-carousel {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.10);
+  border-color: var(--line-color);
+}
+
 @media (max-width: 768px) {
   .cf-carousel {
     width: calc(100% - 40px);
@@ -142,11 +222,16 @@ body[data-theme="dark"] {
   width: min(800px, 80%);
   height: auto;
   transition: transform .28s ease, filter .28s ease;
+  cursor: pointer;
 }
 
 .cf-hero-img:hover {
   transform: translateX(-50%) scale(1.06);
   filter: drop-shadow(0 22px 40px rgba(0, 0, 0, .45));
+}
+
+body[data-theme="light"] .cf-hero-img:hover {
+  filter: drop-shadow(0 20px 36px rgba(0, 0, 0, 0.25));
 }
 
 /* Topbar */
@@ -164,9 +249,12 @@ body[data-theme="dark"] {
 .cf-top-title {
   font-size: 1.6rem;
   color: var(--text-color);
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
-/* 🆕 Topbar Left Block — Grid layout (배지 | 제목/서브텍스트) */
+/* Topbar Left Block */
 .cf-topblock {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -186,7 +274,7 @@ body[data-theme="dark"] {
   grid-row: 1;
 }
 
-/* (공통) 자막 기본 스타일 — 단일줄/다중줄 모두 동일 규칙 */
+/* Subtitles */
 .cf-topblock .cf-subtitle,
 .cf-subinfo .cf-subtitle {
   font-size: 0.8rem;
@@ -199,7 +287,6 @@ body[data-theme="dark"] {
   color: inherit;
 }
 
-/* 내부 span/br도 완전 상속 */
 .cf-topblock .cf-subtitle *,
 .cf-subinfo .cf-subtitle * {
   font: inherit;
@@ -209,7 +296,7 @@ body[data-theme="dark"] {
   font-weight: inherit;
 }
 
-/* 테마별 컬러 톤 */
+/* Subtitles Theme */
 body[data-theme="dark"] .cf-topblock .cf-subtitle,
 body[data-theme="dark"] .cf-subinfo .cf-subtitle {
   color: rgba(255, 255, 255, .85);
@@ -217,10 +304,12 @@ body[data-theme="dark"] .cf-subinfo .cf-subtitle {
 
 body[data-theme="light"] .cf-topblock .cf-subtitle,
 body[data-theme="light"] .cf-subinfo .cf-subtitle {
-  color: rgba(0, 0, 0, .72);
+  color: #111 !important;
+  opacity: 1;
+  text-shadow: none;
 }
 
-/* ✅ 두 줄 표현용 컨테이너(제목 아래) */
+/* Subinfo container */
 .cf-subinfo {
   grid-column: 2;
   grid-row: 2 / span 2;
@@ -229,7 +318,27 @@ body[data-theme="light"] .cf-subinfo .cf-subtitle {
   gap: 2px;
 }
 
-/* 버튼 */
+/* Hidden reg date (popup only) */
+.reg-date[hidden] {
+  display: none !important;
+}
+
+/* Badge */
+.cf-badge {
+  height: 20px;
+  width: auto;
+  vertical-align: middle;
+  user-select: none;
+  -webkit-user-drag: none;
+  transition: transform .2s ease, filter .2s ease;
+}
+
+.cf-badge:hover {
+  transform: scale(1.08);
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.4));
+}
+
+/* Buttons */
 .cf-btn {
   border: 1px solid var(--line-color);
   border-radius: 10px;
@@ -240,42 +349,10 @@ body[data-theme="light"] .cf-subinfo .cf-subtitle {
   backdrop-filter: blur(6px);
   cursor: pointer;
   transition: all .18s ease;
-}
-
-/* 버튼 기본 포지션 설정 */
-.cf-btn {
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-}
-
-/* 🔴 알림 동그라미 */
-.cf-badge-dot {
-  position: absolute;
-  top: -2px;
-  right: -4px;
-  width: 10px;
-  height: 10px;
-  background-color: #ff4d4d;
-  border-radius: 50%;
-  box-shadow: 0 0 6px rgba(255, 0, 0, 0.5);
-  animation: pulseDot 1.5s infinite ease-in-out;
-}
-
-/* ✨ 은은한 깜빡임 */
-@keyframes pulseDot {
-
-  0%,
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-
-  50% {
-    transform: scale(1.3);
-    opacity: 0.6;
-  }
 }
 
 .cf-btn-select:hover {
@@ -290,7 +367,51 @@ body[data-theme="light"] .cf-subinfo .cf-subtitle {
   box-shadow: 0 6px 16px rgba(0, 0, 0, .45);
 }
 
-/* Inner card (other slides) */
+body[data-theme="light"] .cf-btn {
+  background: rgba(0, 0, 0, 0.06);
+  border-color: rgba(0, 0, 0, .12);
+}
+
+body[data-theme="light"] .cf-btn:hover {
+  background: rgba(0, 0, 0, 0.10);
+}
+
+body[data-theme="light"] .cf-btn-select {
+  background: rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  color: #111;
+  font-weight: 300;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+body[data-theme="light"] .cf-btn-select:hover {
+  background: rgba(0, 0, 0, 0.12);
+  transform: scale(1.03);
+}
+
+body[data-theme="light"] .cf-btn-select:active {
+  transform: scale(0.97);
+}
+
+/* Notification dot */
+.cf-badge-dot {
+  position: absolute;
+  top: -2px;
+  right: -4px;
+  width: 10px;
+  height: 10px;
+  background-color: #ff4d4d;
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(255, 0, 0, 0.5);
+  animation: pulseDot 1.5s infinite ease-in-out;
+}
+
+@keyframes pulseDot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.3); opacity: 0.6; }
+}
+
+/* Inner card */
 .cf-slide-inner {
   text-align: center;
   max-width: 820px;
@@ -336,13 +457,8 @@ body[data-theme="light"] .cf-subinfo .cf-subtitle {
   z-index: 15;
 }
 
-.cf-prev {
-  left: 12px;
-}
-
-.cf-next {
-  right: 12px;
-}
+.cf-prev { left: 12px; }
+.cf-next { right: 12px; }
 
 .cf-control svg {
   width: 22px;
@@ -352,7 +468,14 @@ body[data-theme="light"] .cf-subinfo .cf-subtitle {
 
 .cf-control:hover {
   background: rgba(255, 255, 255, 0.15);
-  color: inherit;
+}
+
+body[data-theme="light"] .cf-control {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+body[data-theme="light"] .cf-control:hover {
+  background: rgba(0, 0, 0, 0.15);
 }
 
 /* Dots */
@@ -384,6 +507,18 @@ body[data-theme="light"] .cf-subinfo .cf-subtitle {
   box-shadow: 0 0 6px rgba(255, 255, 255, 0.7);
 }
 
+body[data-theme="light"] .cf-dots .cf-dot {
+  background: #fff;
+  border-color: rgba(0, 0, 0, .5);
+  box-shadow: 0 0 3px rgba(0, 0, 0, .15);
+}
+
+body[data-theme="light"] .cf-dots .cf-dot.is-active {
+  background: #111;
+  border-color: #111;
+  box-shadow: 0 0 6px rgba(0, 0, 0, .3);
+}
+
 /* Footer */
 footer {
   position: fixed;
@@ -403,22 +538,7 @@ footer {
   font-size: .92rem;
 }
 
-/* Badge */
-.cf-badge {
-  height: 20px;
-  width: auto;
-  vertical-align: middle;
-  user-select: none;
-  -webkit-user-drag: none;
-  transition: transform .2s ease, filter .2s ease;
-}
-
-.cf-badge:hover {
-  transform: scale(1.08);
-  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.4));
-}
-
-/* Plate center alignment */
+/* Plate */
 .cf-plate-container {
   position: absolute;
   top: 50%;
@@ -465,7 +585,7 @@ footer {
   font-weight: 900;
 }
 
-/* Slide 4: Info */
+/* Info box */
 .cf-info-box {
   font-size: clamp(.95rem, 2.2vw, 1.1rem);
   color: var(--text-muted);
@@ -493,139 +613,353 @@ footer {
   font-size: 1.05em;
 }
 
-/* 메인 타이틀 */
+body[data-theme="light"] .cf-info-box {
+  background: rgba(255, 255, 255, 0.6);
+  border-color: var(--line-color);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
+  color: #111;
+}
+
+/* Section title */
 .cf-section-title {
   text-align: center;
   font-size: 1rem;
   letter-spacing: 1px;
   color: var(--text-color);
-  margin: 10px 0 0px 0;
+  margin: 10px 0 0;
   text-transform: uppercase;
-  font-family: 'Montserrat', 'Segoe UI', sans-serif;
   user-select: none;
   pointer-events: none;
 }
 
-body[data-theme="light"] .cf-section-title {
-  color: #111;
-}
+body[data-theme="light"] .cf-section-title { color: #111; }
+body[data-theme="dark"] .cf-section-title { color: #f5f5f5; }
 
-body[data-theme="dark"] .cf-section-title {
-  color: #f5f5f5;
-}
-
-/* 차량 히어로 이미지 커서 */
-.cf-hero-img {
-  cursor: pointer;
-}
-
-/* Navbar 확장 요소 */
-.navbar .container-fluid {
-  flex-wrap: nowrap !important;
-  min-width: 0;
-}
-
-.cf-welcome-text {
+/* ===== Odometer + Fuel inline row ===== */
+.cf-mileage {
+  position: absolute;
+  bottom: 1%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;      /* 한 줄 고정 */
+  gap: 6px;
   white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
+  color: var(--text-color);
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  z-index: 8;
+  user-select: none;
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.6);
 }
 
-/* Logout 버튼 */
-.btn-logout {
-  border: 1px solid var(--line-color);
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--text-color);
+/* 아이콘 공통 */
+.cf-speed-icon,
+.cf-mileage-icon {
+  width: 18px;
+  height: 18px;
+  opacity: 0.85;
+  flex-shrink: 0;
+  transform: translateY(1px);
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+/* TOTAL 라벨 / 값 / 구분자 / Fuel 라벨 */
+.cf-odo-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.7;
+}
+
+.cf-odo-value {
+  font-weight: 500;
+  margin-right: 2px;
+}
+
+.cf-mileage-sep {
+  opacity: 0.5;
+  font-size: 0.8rem;
+}
+
+.cf-fuel-label {
+  font-size: 0.8rem;
+  opacity: 0.75;
+  margin-left: 2px;
+}
+
+/* Fuel 값 색상 */
+.cf-mileage-value {
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.cf-mileage-value.high { color: #4ef54e; }
+.cf-mileage-value.medium { color: #ffcc33; }
+.cf-mileage-value.low { color: #ff4d4d; }
+
+/* Hover 시 두 아이콘 동시에 반응 */
+.cf-mileage:hover .cf-speed-icon,
+.cf-mileage:hover .cf-mileage-icon {
+  transform: scale(1.05) translateY(0);
+  opacity: 1;
+}
+
+/* Light mode 조정 */
+body[data-theme="light"] .cf-mileage {
+  color: #222;
+  text-shadow: none;
+  font-weight: 500;
+}
+
+body[data-theme="light"] .cf-odo-label,
+body[data-theme="light"] .cf-fuel-label {
+  color: #444;
+  opacity: 0.9;
+}
+
+body[data-theme="light"] .cf-odo-value {
+  color: #000;
+}
+
+body[data-theme="light"] .cf-mileage-sep {
+  color: #aaa;
+}
+
+body[data-theme="light"] .cf-mileage-value.high { color: #009944; }
+body[data-theme="light"] .cf-mileage-value.medium { color: #e6a600; }
+body[data-theme="light"] .cf-mileage-value.low { color: #d92626; }
+
+/* Warning text */
+.cf-warning-text {
+  position: absolute;
+  top: 27%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-weight: 400;
+  font-size: 1.2rem;
+  letter-spacing: 0.5px;
+  text-align: center;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.cf-warning-sub {
   font-size: 0.85rem;
-  border-radius: 8px;
-  padding: 6px 14px;
+  color: #cccccc;
+  margin-top: 0.3rem;
+  opacity: 0.85;
+}
+
+.cf-warning-text.normal { color: #4ef54e; }
+.cf-warning-text.warning { color: #ffcc33; animation: pulseWarning 1.6s infinite ease-in-out; }
+.cf-warning-text.critical { color: #ff4d4d; animation: pulseCritical 1.2s infinite ease-in-out; }
+
+body[data-theme="light"] .cf-warning-text.normal { color: #1e7a1e; text-shadow: none; }
+body[data-theme="light"] .cf-warning-text.warning { color: #b38300; text-shadow: none; }
+body[data-theme="light"] .cf-warning-text.critical { color: #c22727; text-shadow: none; }
+
+body[data-theme="light"] .cf-warning-sub {
+  color: #111;
+  opacity: 1;
+  font-weight: 500;
+  text-shadow: none;
+}
+
+@keyframes pulseWarning {
+  0%,100% { opacity: 0.9; transform: translateX(-50%) scale(1); }
+  50% { opacity: 0.6; transform: translateX(-50%) scale(1.05); }
+}
+
+@keyframes pulseCritical {
+  0%,100% { opacity: 0.8; transform: translateX(-50%) scale(1); }
+  50% { opacity: 0.4; transform: translateX(-50%) scale(1.08); }
+}
+
+/* Add Vehicle */
+.cf-add-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.cf-add-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 40px 60px;
+  border: 2px dashed rgba(255, 255, 255, 0.25);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text-color);
   transition: all 0.25s ease;
 }
 
-.btn-logout:hover {
-  background: rgba(255, 255, 255, 0.9);
-  color: #000;
-  transform: scale(1.03);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+.cf-add-item:hover {
+  border-color: rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.06);
+  transform: scale(1.02);
 }
 
-.btn-logout:active {
-  transform: scale(0.97);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+.cf-add-icon {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  line-height: 1;
+  transition: transform 0.25s ease, background 0.25s ease;
 }
 
-/* 라이트 모드 대비 */
-body[data-theme="light"] .btn-logout {
-  background: rgba(0, 0, 0, 0.05);
-  color: var(--text-color);
+.cf-add-item:hover .cf-add-icon {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.08);
 }
 
-body[data-theme="light"] .btn-logout:hover {
-  background: rgba(0, 0, 0, 0.15);
-  color: var(--text-color);
+.cf-add-text {
+  margin: 0;
+  font-size: 1.3rem;
+  letter-spacing: 0.5px;
 }
 
-/* Light Mode Palette */
-body[data-theme="light"] {
-  --bg-color: #f7f8fa;
-  --text-color: #111;
-  --text-muted: #555;
-  --nav-bg: rgba(255, 255, 255, 0.85);
-  --footer-bg: rgba(255, 255, 255, 0.92);
-  --line-color: rgba(0, 0, 0, 0.08);
-  --container-top: #ffffff;
-  --container-btm: #f1f3f5;
-  --focus: #3c6fe8;
-  --accent: #ffb703;
-}
-
-body[data-theme="light"] .cf-carousel {
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.10);
-  border-color: var(--line-color);
-}
-
-body[data-theme="light"] .cf-control {
-  background: rgba(0, 0, 0, 0.08);
-  color: var(--text-color);
-}
-
-body[data-theme="light"] .cf-control:hover {
-  background: rgba(0, 0, 0, 0.15);
-  color: inherit;
-}
-
-body[data-theme="light"] .cf-btn {
-  background: rgba(0, 0, 0, 0.06);
-  color: var(--text-color);
-  border-color: var(--line-color);
-}
-
-body[data-theme="light"] .cf-btn-select:hover {
-  background: rgba(0, 0, 0, 0.12);
-  color: var(--text-color);
-}
-
-body[data-theme="light"] .cf-info-box {
-  background: rgba(255, 255, 255, 0.6);
-  border-color: var(--line-color);
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
-}
-
-body[data-theme="light"] .navbar {
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-bottom-color: var(--line-color);
-}
-
-body[data-theme="light"] .cf-plate-text {
+body[data-theme="light"] .cf-add-item {
+  border-color: rgba(0, 0, 0, 0.22);
+  background: rgba(255, 255, 255, 0.98);
   color: #111;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 }
 
-body[data-theme="light"] .cf-hero-img:hover {
-  filter: drop-shadow(0 20px 36px rgba(0, 0, 0, 0.25));
+body[data-theme="light"] .cf-add-item:hover {
+  border-color: rgba(0, 0, 0, 0.35);
+  background: #ffffff;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.12);
 }
 
-/* ===== Simple Popup ===== */
+body[data-theme="light"] .cf-add-icon {
+  background: rgba(0, 0, 0, 0.05);
+  color: #111;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.10);
+}
+
+body[data-theme="light"] .cf-add-item:hover .cf-add-icon {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+/* Info icon */
+.cf-info-icon {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  color: var(--text-color);
+  opacity: 0.7;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.cf-info-icon:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* Connector: Plate → Hero */
+.cf-connector-abs {
+  position: absolute;
+  width: 2px;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.cf-connector-abs .cf-line {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.2));
+}
+
+.cf-connector-abs .cf-dot {
+  position: absolute;
+  left: 50%;
+  bottom: -5px;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
+}
+
+@keyframes cfLinePulse {
+  0%,100% { opacity: .8; }
+  50% { opacity: .3; }
+}
+
+@keyframes cfDotGlow {
+  0%,100% { opacity: 1; box-shadow: 0 0 6px rgba(255,255,255,0.6); }
+  50% { opacity: .65; box-shadow: 0 0 14px rgba(255,255,255,0.9); }
+}
+
+@keyframes cfLinePulseLight {
+  0%,100% { opacity: .75; }
+  50% { opacity: .35; }
+}
+
+@keyframes cfDotGlowLight {
+  0%,100% { opacity: .95; box-shadow: 0 0 6px rgba(0,0,0,0.25); }
+  50% { opacity: .6; box-shadow: 0 0 10px rgba(0,0,0,0.35); }
+}
+
+body[data-theme="dark"] .cf-connector-abs .cf-line {
+  animation: cfLinePulse 2.8s ease-in-out infinite;
+}
+
+body[data-theme="dark"] .cf-connector-abs .cf-dot {
+  animation: cfDotGlow 2.8s ease-in-out infinite;
+}
+
+body[data-theme="light"] .cf-connector-abs .cf-line {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.15));
+  animation: cfLinePulseLight 2.8s ease-in-out infinite;
+}
+
+body[data-theme="light"] .cf-connector-abs .cf-dot {
+  background: #111;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.25);
+  animation: cfDotGlowLight 2.8s ease-in-out infinite;
+}
+
+/* Navbar Logo */
+.cf-logo {
+  height: 28px;
+  width: auto;
+  object-fit: contain;
+  user-select: none;
+  pointer-events: none;
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.25));
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.navbar-brand:hover .cf-logo {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.5));
+}
+
+@media (max-width: 768px) {
+  .cf-logo { height: 22px; }
+}
+
+/* Simple Notice Popup */
 .cf-popup-overlay {
   position: fixed;
   inset: 0;
@@ -653,7 +987,7 @@ body[data-theme="light"] .cf-hero-img:hover {
 }
 
 body[data-theme="light"] .cf-popup-box {
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.95);
   color: #111;
   border-color: rgba(0, 0, 0, .12);
 }
@@ -683,519 +1017,177 @@ body[data-theme="light"] .cf-popup-box {
   transform: scale(1.03);
 }
 
-/* ===== Navbar right spacing & shrink-safe fix ===== */
-.navbar .container-fluid {
-  padding-right: 1rem;
-  padding-left: 1rem;
-  padding-right: max(1rem, env(safe-area-inset-right));
-  padding-left: max(1rem, env(safe-area-inset-left));
-}
-
-@media (max-width: 576px) {
-  .navbar .container-fluid {
-    padding-right: .75rem;
-    padding-left: .75rem;
-  }
-}
-
-.navbar .container-fluid>.d-flex.align-items-center.gap-3 {
-  margin-right: .25rem;
-}
-
-.navbar .container-fluid>.d-flex,
-.cf-welcome-text {
-  min-width: 0;
-}
-
-.cf-welcome-text {
-  max-width: 40vw;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.btn-logout {
-  flex: 0 0 auto;
-  margin-right: 4px;
-}
-
-@media (max-width: 420px) {
-  .navbar .container-fluid>.d-flex.align-items-center.gap-3 {
-    gap: .5rem !important;
-  }
-}
-
-/* ===== Car Mileage (주행거리 표시) ===== */
-.cf-mileage {
-  position: absolute;
-  bottom: 1%;
-  left: 50%;
-  transform: translateX(-50%);
-  color: var(--text-color);
-  font-size: 0.9rem;
-  letter-spacing: 0.5px;
-  text-align: center;
-  z-index: 8;
-  user-select: none;
-  text-shadow: 0 0 6px rgba(0, 0, 0, 0.6);
-}
-
-body[data-theme="light"] .cf-mileage {
-  color: #111;
-  text-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
-}
-
-/* ===== Mileage Icon (SVG Image) ===== */
-.cf-mileage {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.cf-mileage-icon {
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
-  opacity: 0.9;
-  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.3));
-  transition: transform 0.25s ease, opacity 0.25s ease;
-}
-
-.cf-mileage:hover .cf-mileage-icon {
-  transform: scale(1.05);
-  opacity: 1;
-}
-
-/* ===== Responsive tweaks ===== */
-@media (max-width: 768px) {
-  .navbar .container-fluid {
-    padding-right: max(.75rem, env(safe-area-inset-right));
-    padding-left: max(.75rem, env(safe-area-inset-left));
-  }
-
-  .cf-section-title {
-    font-size: .95rem;
-    margin-top: 12px;
-  }
-
-  .cf-carousel {
-    max-width: 640px;
-    width: calc(100% - 24px);
-    margin: 12px auto;
-    padding-bottom: 48px;
-  }
-
-  .cf-slide {
-    padding: clamp(12px, 3vw, 24px);
-  }
-
-  .cf-hero-img {
-    width: min(720px, 88%);
-    bottom: 10%;
-  }
-
-  .cf-plate {
-    width: 160px;
-  }
-
-  .cf-plate-text {
-    font-size: 22px;
-  }
-
-  .cf-plate-kr {
-    font-size: 19px;
-  }
-
-  .cf-mileage {
-    bottom: 6.5%;
-    font-size: .95rem;
-    gap: 6px;
-  }
-
-  .cf-control {
-    width: 48px;
-    height: 48px;
-  }
-
-  .cf-dots {
-    bottom: 14px;
-    gap: 8px;
-  }
-}
-
-@media (max-width: 480px) {
-  .navbar .container-fluid {
-    padding-right: max(.6rem, env(safe-area-inset-right));
-    padding-left: max(.6rem, env(safe-area-inset-left));
-  }
-
-  .cf-section-title {
-    font-size: .9rem;
-    margin: 10px 0 6px 0;
-  }
-
-  .cf-carousel {
-    width: calc(100% - 16px);
-    margin: 8px auto;
-    border-radius: 20px;
-    padding-bottom: 54px;
-  }
-
-  .cf-slide-topbar {
-    top: 16px;
-    left: 16px;
-    right: 16px;
-  }
-
-  .cf-top-title {
-    font-size: 1.3rem;
-  }
-
-  .cf-btn {
-    padding: 7px 12px;
-    font-size: .9rem;
-  }
-
-  .cf-hero-img {
-    width: min(640px, 92%);
-    bottom: 12%;
-  }
-
-  .cf-plate {
-    width: 140px;
-  }
-
-  .cf-plate-text {
-    font-size: 19px;
-    letter-spacing: 1.5px;
-  }
-
-  .cf-plate-kr {
-    font-size: 17px;
-  }
-
-  .cf-mileage {
-    bottom: 9%;
-    font-size: .9rem;
-  }
-
-  .cf-mileage-icon {
-    width: 18px;
-    height: 18px;
-  }
-
-  .cf-control {
-    width: 50px;
-    height: 50px;
-  }
-
-  .cf-dots {
-    bottom: 18px;
-    gap: 8px;
-  }
-}
-
-@media (max-width: 360px) {
-  .cf-hero-img {
-    bottom: 13.5%;
-  }
-
-  .cf-mileage {
-    bottom: 10.5%;
-    font-size: .88rem;
-  }
-
-  .cf-plate {
-    width: 128px;
-  }
-
-  .cf-plate-text {
-    font-size: 18px;
-  }
-
-  .cf-plate-kr {
-    font-size: 16px;
-  }
-}
-
-/* 드래그 중 커서 표시 */
-.cf-carousel-viewport.is-grabbing {
-  cursor: grabbing;
-  cursor: -webkit-grabbing;
-}
-
-/* 링크/버튼에서 더블탭 확대 방지 힌트 */
-a,
-button,
-.btn,
-[role="button"] {
-  touch-action: manipulation;
-}
-
-/* iOS 글자 자동확대 방지 */
-html {
-  -webkit-text-size-adjust: 100%;
-}
-
-/* ===============================
-   Connector: Plate → Hero (absolute)
-   =============================== */
-.cf-slide {
-  position: relative;
-}
-
-.cf-connector-abs {
-  position: absolute;
-  width: 2px;
-  pointer-events: none;
-  z-index: 5;
-}
-
-.cf-connector-abs .cf-line {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 2px;
-  height: 100%;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.2));
-}
-
-.cf-connector-abs .cf-dot {
-  position: absolute;
-  left: 50%;
-  bottom: -5px;
-  transform: translateX(-50%);
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #fff;
-  box-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
-}
-
-/* =========================================
-   ✨ Connector animations (no duplicates)
-   ========================================= */
-@keyframes cfLinePulse {
-
-  0%,
-  100% {
-    opacity: .8;
-  }
-
-  50% {
-    opacity: .3;
-  }
-}
-
-@keyframes cfDotGlow {
-
-  0%,
-  100% {
-    opacity: 1;
-    box-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
-  }
-
-  50% {
-    opacity: .65;
-    box-shadow: 0 0 14px rgba(255, 255, 255, 0.9);
-  }
-}
-
-@keyframes cfLinePulseLight {
-
-  0%,
-  100% {
-    opacity: .75;
-  }
-
-  50% {
-    opacity: .35;
-  }
-}
-
-@keyframes cfDotGlowLight {
-
-  0%,
-  100% {
-    opacity: .95;
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.25);
-  }
-
-  50% {
-    opacity: .6;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
-  }
-}
-
-/* 🔁 애니메이션 적용은 테마에서만 */
-body[data-theme="dark"] .cf-connector-abs .cf-line {
-  animation: cfLinePulse 2.8s ease-in-out infinite;
-}
-
-body[data-theme="dark"] .cf-connector-abs .cf-dot {
-  animation: cfDotGlow 2.8s ease-in-out infinite;
-}
-
-body[data-theme="light"] .cf-connector-abs .cf-line {
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.15));
-  animation: cfLinePulseLight 2.8s ease-in-out infinite;
-}
-
-body[data-theme="light"] .cf-connector-abs .cf-dot {
-  background: #111;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.25);
-  animation: cfDotGlowLight 2.8s ease-in-out infinite;
-}
-
-/* ================================
-   🚗 Navbar Logo Style
-   ================================ */
-.cf-logo {
-  height: 28px;
-  width: auto;
-  object-fit: contain;
-  user-select: none;
-  pointer-events: none;
-  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.25));
-  transition: transform 0.25s ease, filter 0.25s ease;
-}
-
-.navbar-brand:hover .cf-logo {
-  transform: scale(1.05);
-  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.5));
-}
-
-@media (max-width: 768px) {
-  .cf-logo {
-    height: 22px;
-  }
-}
-
-/* 기본 텍스트 */
-.cf-mileage-value {
-  font-weight: 500;
-  transition: color 0.3s ease;
-}
-
-/* 연료 수준별 색상 */
-.cf-mileage-value.high {
-  color: #4ef54e;
-}
-
-/* 🟢 70~100% */
-.cf-mileage-value.medium {
-  color: #ffcc33;
-}
-
-/* 🟡 30~69% */
-.cf-mileage-value.low {
-  color: #ff4d4d;
-}
-
-/* 🔴 0~29% */
-
-.cf-warning-text {
-  position: absolute;
-  top: 27%;
-  left: 50%;
-  transform: translateX(-50%);
-  font-weight: 400;
-  font-size: 1.2rem;
-  letter-spacing: 0.5px;
-  text-align: center;
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-/* 🔹 서브 텍스트 (공통) */
-.cf-warning-sub {
-  font-size: 0.85rem;
-  color: #cccccc;
-  margin-top: 0.3rem;
-  opacity: 0.85;
-}
-
-/* 🟢 이상 없음 */
-.cf-warning-text.normal {
-  color: #4ef54e;
-}
-
-/* 🟡 경고 */
-.cf-warning-text.warning {
-  color: #ffcc33;
-  animation: pulseWarning 1.6s infinite ease-in-out;
-}
-
-/* 🔴 심각한 문제 */
-.cf-warning-text.critical {
-  color: #ff4d4d;
-  animation: pulseCritical 1.2s infinite ease-in-out;
-}
-
-/* 경고 깜빡임 */
-@keyframes pulseWarning {
-
-  0%,
-  100% {
-    opacity: 0.9;
-    transform: translateX(-50%) scale(1);
-  }
-
-  50% {
-    opacity: 0.6;
-    transform: translateX(-50%) scale(1.05);
-  }
-}
-
-/* 심각한 문제 깜빡임 (조금 더 빠르고 강한 효과) */
-@keyframes pulseCritical {
-
-  0%,
-  100% {
-    opacity: 0.8;
-    transform: translateX(-50%) scale(1);
-  }
-
-  50% {
-    opacity: 0.4;
-    transform: translateX(-50%) scale(1.08);
-  }
+body[data-theme="light"] .cf-popup-close {
+  background: #000;
+  color: #fff;
 }
 
 /* ============================
-   📱 CARFLOW Mobile Compact Patch
-   (append at the very end)
-   목표: 모바일 전체 타이포/컴포넌트 압축
+   Vehicle Info Modal (i icon)
    ============================ */
 
-/* rem 기반 전역 축소: 768/480/360 단계로 단계적 축소 */
+.cf-modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 9998;
+}
+
+.cf-modal.is-visible {
+  display: flex;
+}
+
+/* 공통 모달 박스: 다크/라이트 동일 사이즈 */
+.cf-modal-content {
+  width: min(420px, 88%);
+  padding: 20px 22px 18px;
+  border-radius: 18px;
+  position: relative;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.32);
+}
+
+/* Dark mode modal */
+body[data-theme="dark"] .cf-modal-content {
+  background: #050505;
+  color: #f5f5f5;
+  border: none;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.9);
+}
+
+/* Light mode modal */
+body[data-theme="light"] .cf-modal-content {
+  background: #ffffff;
+  color: #111111;
+  border: none;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.cf-modal-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin: 0 0 4px;
+}
+
+body[data-theme="light"] .cf-modal-title {
+  color: #000;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.cf-modal-desc {
+  font-size: 0.8rem;
+  opacity: 0.7;
+  margin: 0 0 10px;
+}
+
+body[data-theme="light"] .cf-modal-desc {
+  color: #333;
+  font-weight: 500;
+  margin-bottom: 14px;
+  opacity: 0.9;
+}
+
+.cf-modal-body {
+  margin: 6px 0 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cf-info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  font-size: 0.85rem;
+}
+
+.cf-info-label {
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+}
+
+.cf-info-value {
+  font-weight: 500;
+  text-align: right;
+  max-width: 65%;
+  word-break: break-all;
+}
+
+/* Light mode labels/values */
+body[data-theme="light"] .cf-info-label {
+  color: #222;
+  opacity: 1;
+  font-weight: 600;
+}
+
+body[data-theme="light"] .cf-info-value {
+  color: #000;
+  font-weight: 500;
+}
+
+/* 특정 필드 모노 폰트 */
+#cfInfoVin,
+#cfInfoLastSync {
+  font-family: "SF Mono", "Roboto Mono", monospace;
+  font-size: 0.8rem;
+}
+
+.cf-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 6px;
+}
+
+/* X 버튼은 숨김 */
+.cf-modal-close {
+  display: none;
+}
+
+/* Modal OK Button */
+#cfVehicleInfoOk.cf-btn {
+  padding: 6px 14px;
+  font-size: 0.82rem;
+  border-radius: 9px;
+}
+
+body[data-theme="dark"] #cfVehicleInfoOk.cf-btn {
+  background: #ffffff;
+  color: #000;
+  border: none;
+  font-weight: 600;
+}
+
+body[data-theme="dark"] #cfVehicleInfoOk.cf-btn:hover {
+  background: #e5e5e5;
+  transform: scale(1.03);
+}
+
+body[data-theme="light"] #cfVehicleInfoOk.cf-btn {
+  background: #000;
+  color: #fff;
+  border: none;
+  font-weight: 600;
+}
+
+body[data-theme="light"] #cfVehicleInfoOk.cf-btn:hover {
+  background: #222;
+  transform: scale(1.04);
+}
+
+/* ============================
+   Mobile / Responsive
+   ============================ */
+
 @media (max-width: 768px) {
-  html {
-    font-size: 93.75%;
-  }
-}
+  html { font-size: 93.75%; }
 
-/* 15px 기준 */
-@media (max-width: 480px) {
-  html {
-    font-size: 87.5%;
-  }
-}
-
-/* 14px 기준 */
-@media (max-width: 360px) {
-  html {
-    font-size: 81.25%;
-  }
-}
-
-/* 13px 기준 */
-
-/* 네비게이션/브랜드 영역 더 컴팩트 */
-@media (max-width: 768px) {
   .navbar {
     padding: .5rem .75rem;
   }
@@ -1217,25 +1209,7 @@ body[data-theme="light"] .cf-connector-abs .cf-dot {
   .cf-welcome-text {
     max-width: 34vw;
   }
-}
 
-@media (max-width: 480px) {
-  .navbar {
-    padding: .45rem .6rem;
-  }
-
-  .navbar-brand img,
-  .cf-logo {
-    height: 18px;
-  }
-
-  .cf-welcome-text {
-    max-width: 50vw;
-  }
-}
-
-/* 메인 캐러셀/슬라이드 여백·크기 축소 */
-@media (max-width: 768px) {
   .cf-carousel {
     max-width: 560px;
     width: calc(100% - 20px);
@@ -1261,21 +1235,92 @@ body[data-theme="light"] .cf-connector-abs .cf-dot {
   .cf-topblock .cf-subtitle,
   .cf-subinfo .cf-subtitle {
     font-size: .72rem;
-    opacity: .7;
   }
 
   .cf-btn {
     padding: 6px 10px;
     font-size: .82rem;
   }
+
+  .cf-slide-inner {
+    max-width: 680px;
+    padding: 14px 16px;
+    border-radius: 14px;
+  }
+
+  .cf-slide-title {
+    font-size: 1.35rem;
+  }
+
+  .cf-slide-desc {
+    font-size: .9rem;
+  }
+
+  .cf-info-box {
+    font-size: .9rem;
+    line-height: 1.6;
+    padding: 24px 16px;
+    border-radius: 14px;
+  }
+
+  .cf-info-thanks {
+    font-size: .95em;
+  }
+
+  .cf-connector-abs {
+    width: 1.5px;
+  }
+
+  .cf-connector-abs .cf-dot {
+    width: 8px;
+    height: 8px;
+    bottom: -4px;
+  }
+
+  .cf-warning-text {
+    font-size: 1rem;
+  }
+
+  .cf-warning-sub {
+    font-size: .78rem;
+  }
+
+  .footer-text {
+    font-size: .8rem;
+  }
+
+  .cf-mileage {
+    bottom: 4.5% !important;
+  }
 }
 
 @media (max-width: 480px) {
+  html { font-size: 87.5%; }
+
+  .navbar {
+    padding: .45rem .6rem;
+  }
+
+  .navbar-brand img,
+  .cf-logo {
+    height: 18px;
+  }
+
+  .cf-welcome-text {
+    max-width: 50vw;
+  }
+
   .cf-carousel {
     width: calc(100% - 12px);
     margin: 6px auto;
     border-radius: 16px;
     padding-bottom: 44px;
+  }
+
+  .cf-slide-topbar {
+    top: 16px;
+    left: 16px;
+    right: 16px;
   }
 
   .cf-top-title {
@@ -1301,41 +1346,7 @@ body[data-theme="light"] .cf-connector-abs .cf-dot {
     width: 18px;
     height: 18px;
   }
-}
 
-/* 히어로 이미지/번호판/마일리지 축소 */
-@media (max-width: 768px) {
-  .cf-hero-img {
-    width: min(640px, 78%);
-    bottom: 9%;
-  }
-
-  .cf-plate {
-    width: 132px;
-  }
-
-  .cf-plate-text {
-    font-size: 17px;
-    letter-spacing: 1.2px;
-  }
-
-  .cf-plate-kr {
-    font-size: 15px;
-  }
-
-  .cf-mileage {
-    bottom: 6%;
-    font-size: .82rem;
-    gap: 4px;
-  }
-
-  .cf-mileage-icon {
-    width: 16px;
-    height: 16px;
-  }
-}
-
-@media (max-width: 480px) {
   .cf-hero-img {
     width: min(560px, 82%);
     bottom: 10%;
@@ -1354,81 +1365,21 @@ body[data-theme="light"] .cf-connector-abs .cf-dot {
   }
 
   .cf-mileage {
-    bottom: 8%;
+    bottom: 6% !important;
     font-size: .8rem;
   }
 
-  .cf-mileage-icon {
+  .cf-mileage-icon,
+  .cf-speed-icon {
     width: 15px;
     height: 15px;
   }
-}
 
-/* 카드/인포박스 압축 */
-@media (max-width: 768px) {
-  .cf-slide-inner {
-    max-width: 680px;
-    padding: 14px 16px;
-    border-radius: 14px;
-  }
-
-  .cf-slide-title {
-    font-size: 1.35rem;
-  }
-
-  .cf-slide-desc {
-    font-size: .9rem;
-  }
-
-  .cf-info-box {
-    font-size: .9rem;
-    line-height: 1.6;
-    padding: 24px 16px;
-    border-radius: 14px;
-  }
-
-  .cf-info-thanks {
-    font-size: .95em;
-  }
-}
-
-/* 섹션 타이틀 더 작게 */
-@media (max-width: 768px) {
-  .cf-section-title {
-    font-size: .85rem;
-    margin: 8px 0 4px;
-  }
-}
-
-@media (max-width: 480px) {
   .cf-section-title {
     font-size: .8rem;
     margin: 6px 0 2px;
   }
-}
 
-/* 커넥터/경고 텍스트 축소 */
-@media (max-width: 768px) {
-  .cf-connector-abs {
-    width: 1.5px;
-  }
-
-  .cf-connector-abs .cf-dot {
-    width: 8px;
-    height: 8px;
-    bottom: -4px;
-  }
-
-  .cf-warning-text {
-    font-size: 1rem;
-  }
-
-  .cf-warning-sub {
-    font-size: .78rem;
-  }
-}
-
-@media (max-width: 480px) {
   .cf-warning-text {
     font-size: .95rem;
   }
@@ -1436,23 +1387,10 @@ body[data-theme="light"] .cf-connector-abs .cf-dot {
   .cf-warning-sub {
     font-size: .72rem;
   }
-}
 
-/* 푸터 문구도 살짝 축소 */
-@media (max-width: 768px) {
-  .footer-text {
-    font-size: .8rem;
-  }
-}
-
-@media (max-width: 480px) {
   .footer-text {
     font-size: .75rem;
   }
-}
-
-/* iOS 더블탭 확대 방지 & 터치 타깃 유지(최소 40px) */
-@media (max-width: 480px) {
 
   .cf-control,
   .btn,
@@ -1461,440 +1399,74 @@ body[data-theme="light"] .cf-connector-abs .cf-dot {
   }
 }
 
-/* ============================
-   📱 Fuel Level spacing fix for mobile
-   ============================ */
-@media (max-width: 768px) {
-  .cf-mileage {
-    bottom: 4.5% !important;
-  }
-}
-
-@media (max-width: 480px) {
-  .cf-mileage {
-    bottom: 6% !important;
-  }
-}
-
 @media (max-width: 360px) {
+  html { font-size: 81.25%; }
+
+  .cf-hero-img {
+    bottom: 13.5%;
+  }
+
   .cf-mileage {
     bottom: 7% !important;
+    font-size: .78rem;
+  }
+
+  .cf-plate {
+    width: 128px;
+  }
+
+  .cf-plate-text {
+    font-size: 18px;
+  }
+
+  .cf-plate-kr {
+    font-size: 16px;
   }
 }
 
-/* ============================
-   📱 Genesis badge shrink — multi-breakpoint adaptive
-   ============================ */
+/* Genesis badge shrink */
 @media (max-width: 1024px) {
-
   .cf-topblock .cf-badge,
-  .cf-badge {
-    height: 18px !important;
-    width: auto;
-  }
-
-  .cf-topblock {
-    column-gap: .45rem;
-  }
+  .cf-badge { height: 18px !important; width: auto; }
+  .cf-topblock { column-gap: .45rem; }
 }
 
 @media (max-width: 820px) {
-  .cf-slide-topbar {
-    top: 14px;
-    left: 16px;
-    right: 16px;
-  }
-
+  .cf-slide-topbar { top: 14px; left: 16px; right: 16px; }
   .cf-topblock .cf-badge,
-  .cf-badge {
-    height: 17px !important;
-  }
-
-  .cf-topblock {
-    column-gap: .4rem;
-  }
+  .cf-badge { height: 17px !important; }
+  .cf-topblock { column-gap: .4rem; }
 }
 
 @media (max-width: 768px) {
-  .cf-slide-topbar {
-    top: 12px;
-    left: 14px;
-    right: 14px;
-  }
-
+  .cf-slide-topbar { top: 12px; left: 14px; right: 14px; }
   .cf-topblock .cf-badge,
-  .cf-badge {
-    height: 16px !important;
-  }
-
-  .cf-topblock {
-    column-gap: .38rem;
-  }
+  .cf-badge { height: 16px !important; }
+  .cf-topblock { column-gap: .38rem; }
 }
 
 @media (max-width: 640px) {
-  .cf-slide-topbar {
-    top: 11px;
-    left: 12px;
-    right: 12px;
-  }
-
+  .cf-slide-topbar { top: 11px; left: 12px; right: 12px; }
   .cf-topblock .cf-badge,
-  .cf-badge {
-    height: 15px !important;
-  }
-
-  .cf-topblock {
-    column-gap: .36rem;
-  }
+  .cf-badge { height: 15px !important; }
+  .cf-topblock { column-gap: .36rem; }
 }
 
 @media (max-width: 480px) {
-  .cf-slide-topbar {
-    top: 10px;
-    left: 12px;
-    right: 12px;
-  }
-
+  .cf-slide-topbar { top: 10px; left: 12px; right: 12px; }
   .cf-topblock .cf-badge,
-  .cf-badge {
-    height: 14px !important;
-  }
-
-  .cf-topblock {
-    column-gap: .35rem;
-  }
+  .cf-badge { height: 14px !important; }
+  .cf-topblock { column-gap: .35rem; }
 }
 
 @media (max-width: 400px) {
-
   .cf-topblock .cf-badge,
-  .cf-badge {
-    height: 13.5px !important;
-  }
-
-  .cf-topblock {
-    column-gap: .33rem;
-  }
+  .cf-badge { height: 13.5px !important; }
+  .cf-topblock { column-gap: .33rem; }
 }
 
 @media (max-width: 360px) {
-
   .cf-topblock .cf-badge,
-  .cf-badge {
-    height: 13px !important;
-  }
-
-  .cf-topblock {
-    column-gap: .3rem;
-  }
-}
-
-/* 🔆 Light mode contrast fixes
-   - 라이트 모드에서 경고 텍스트/서브텍스트/도트 네비/버튼 대비 강화
-*/
-body[data-theme="light"] .cf-warning-text.normal {
-  color: #1e7a1e;
-  text-shadow: none;
-}
-
-body[data-theme="light"] .cf-warning-text.warning {
-  color: #b38300;
-  text-shadow: none;
-}
-
-body[data-theme="light"] .cf-warning-text.critical {
-  color: #c22727;
-  text-shadow: none;
-}
-
-body[data-theme="light"] .cf-warning-sub {
-  color: #333;
-  opacity: .92;
-}
-
-body[data-theme="light"] .cf-dots .cf-dot {
-  background: #fff;
-  border-color: rgba(0, 0, 0, .5);
-  box-shadow: 0 0 3px rgba(0, 0, 0, .15);
-}
-
-body[data-theme="light"] .cf-dots .cf-dot.is-active {
-  background: #111;
-  border-color: #111;
-  box-shadow: 0 0 6px rgba(0, 0, 0, .3);
-}
-
-body[data-theme="light"] .cf-btn {
-  background: rgba(0, 0, 0, 0.06);
-  border-color: rgba(0, 0, 0, .12);
-}
-
-body[data-theme="light"] .cf-btn:hover {
-  background: rgba(0, 0, 0, 0.10);
-}
-
-body[data-theme="light"] .cf-slide-inner {
-  background: rgba(255, 255, 255, 0.72);
-  border-color: rgba(0, 0, 0, .08);
-}
-
-body[data-theme="light"] .cf-info-thanks {
-  color: #000;
-}
-
-/* === Light mode contrast: stronger sub status + fuel label === */
-body[data-theme="light"] .cf-warning-sub {
-  color: #111;
-  /* 거의 블랙에 가까운 진한 회색 */
-  opacity: 1;
-  /* 완전 불투명 */
-  font-weight: 500;
-  /* 살짝 강조 */
-  text-shadow: none;
-}
-
-body[data-theme="light"] .cf-mileage {
-  color: #111;
-  /* Fuel Level : 라벨도 블랙 */
-  text-shadow: none;
-  font-weight: 500;
-}
-
-/* Fuel Level 값 색상 대비 강화 */
-body[data-theme="light"] .cf-mileage-value.high {
-  color: #009944;
-  /* ✅ 더 선명한 초록 */
-}
-
-body[data-theme="light"] .cf-mileage-value.medium {
-  color: #e6a600;
-  /* ⚠️ 진한 노랑 */
-}
-
-body[data-theme="light"] .cf-mileage-value.low {
-  color: #d92626;
-  /* 🔴 진한 빨강 */
-}
-
-/* 연료 아이콘 선명도 보강 */
-body[data-theme="light"] .cf-mileage-icon {
-  opacity: 1;
-  filter: drop-shadow(0 0 2px rgba(0, 0, 0, .25));
-}
-
-/* === Light mode contrast: Top info + Details button (no font-weight change) === */
-
-/* 🔸 Owner / Registered / Connection 텍스트 진하게 */
-body[data-theme="light"] .cf-topblock .cf-subtitle,
-body[data-theme="light"] .cf-subinfo .cf-subtitle {
-  color: #111 !important;
-  /* 더 진한 회색으로 */
-  opacity: 1;
-  text-shadow: none;
-}
-
-/* 🔸 Connection 상태 점도 선명하게 */
-body[data-theme="light"] .cf-conn {
-  color: #000;
-}
-
-body[data-theme="light"] .cf-conn .cf-dot {
-  filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.3));
-}
-
-/* 🔸 Details 버튼 */
-body[data-theme="light"] .cf-btn-select {
-  background: rgba(0, 0, 0, 0.06);
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  color: #111;
-  font-weight: 300;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-}
-
-body[data-theme="light"] .cf-btn-select:hover {
-  background: rgba(0, 0, 0, 0.12);
-  color: #000;
-  transform: scale(1.03);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
-}
-
-body[data-theme="light"] .cf-btn-select:active {
-  transform: scale(0.97);
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.18);
-}
-
-/* === Light mode contrast: Notice popup text === */
-body[data-theme="light"] .cf-popup-box {
-  background: rgba(255, 255, 255, 0.95);
-  /* 약간 더 밝은 배경 */
-  color: #111;
-  /* 전체 텍스트 기본색 진하게 */
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
-}
-
-/* 제목 (Notice) */
-body[data-theme="light"] .cf-popup-title {
-  color: #000;
-  /* 완전 검정으로 */
-}
-
-/* 본문 (The ‘Details’ demo page...) */
-body[data-theme="light"] .cf-popup-message {
-  color: #111;
-  /* 중간 진한 회색으로 */
-  font-weight: 300;
-  opacity: 1;
-  /* 투명도 제거 */
-}
-
-/* OK 버튼 대비 강화 */
-body[data-theme="light"] .cf-popup-close {
-  background: #000;
-  color: #fff;
-  border: none;
-}
-
-body[data-theme="light"] .cf-popup-close:hover {
-  background: #333;
-  transform: scale(1.03);
-}
-
-/* === Light mode contrast: Navbar Welcome text === */
-body[data-theme="light"] .cf-welcome-text {
-  color: #111 !important;
-  /* 진한 검정 */
-  font-weight: 300;
-  opacity: 1;
-  text-shadow: none;
-}
-
-/* Guest 등의 서브 텍스트도 동일하게 */
-body[data-theme="light"] .navbar .cf-welcome-text span {
-  color: #111 !important;
-}
-
-/* 다크 모드에서는 유지 */
-body[data-theme="dark"] .cf-welcome-text {
-  color: #f5f5f5;
-  opacity: 0.95;
-}
-
-/* === Light mode contrast: Info section & disclaimer text === */
-body[data-theme="light"] .cf-info-box {
-  color: #111;
-  /* 전체 본문 진하게 */
-  opacity: 1;
-}
-
-body[data-theme="light"] .cf-info-box strong {
-  color: #000;
-  /* 강조 문구 더 진하게 */
-}
-
-body[data-theme="light"] .cf-info-box a {
-  color: #ffb703;
-  /* Instagram 링크 색 유지 (기존 accent) */
-  text-decoration: none;
-}
-
-body[data-theme="light"] .cf-info-box a:hover {
-  color: #d69100;
-  /* hover 시 조금 어둡게 */
-}
-
-body[data-theme="light"] .cf-info-thanks {
-  color: #000;
-  /* "Thank you." 부분 완전 검정으로 */
-}
-
-/* ============================
-   🚗 Add Vehicle — dashed only around icon+text
-   ============================ */
-.cf-add-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-}
-
-.cf-add-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-  padding: 40px 60px;
-
-  border: 2px dashed rgba(255, 255, 255, 0.25);
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.03);
-  color: var(--text-color);
-  transition: all 0.25s ease;
-}
-
-.cf-add-item:hover {
-  border-color: rgba(255, 255, 255, 0.45);
-  background: rgba(255, 255, 255, 0.06);
-  transform: scale(1.02);
-}
-
-/* ➕ 아이콘 */
-.cf-add-icon {
-  width: 68px;
-  height: 68px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.08);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2.5rem;
-  line-height: 1;
-  transition: transform 0.25s ease, background 0.25s ease;
-}
-
-.cf-add-item:hover .cf-add-icon {
-  background: rgba(255, 255, 255, 0.2);
-  transform: scale(1.08);
-}
-
-/* 텍스트 */
-.cf-add-text {
-  margin: 0;
-  font-size: 1.3rem;
-  letter-spacing: 0.5px;
-}
-
-/* ============================
-   🔆 Light mode — Add Vehicle 카드 대비 보정
-   ============================ */
-body[data-theme="light"] .cf-add-item {
-  border-color: rgba(0, 0, 0, 0.22);        /* 점선 진하게 */
-  background: rgba(255, 255, 255, 0.98);    /* 거의 흰색 */
-  color: #111;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-}
-
-body[data-theme="light"] .cf-add-item:hover {
-  border-color: rgba(0, 0, 0, 0.35);
-  background: #ffffff;
-  transform: scale(1.02);
-  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.12);
-}
-
-/* ➕ 동그라미 아이콘 */
-body[data-theme="light"] .cf-add-icon {
-  background: rgba(0, 0, 0, 0.05);
-  color: #111;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.10);
-}
-
-body[data-theme="light"] .cf-add-item:hover .cf-add-icon {
-  background: rgba(0, 0, 0, 0.08);
-  transform: scale(1.08);
-}
-
-/* 텍스트도 라이트 모드에서 또렷하게 */
-body[data-theme="light"] .cf-add-text {
-  color: #111;
+  .cf-badge { height: 13px !important; }
+  .cf-topblock { column-gap: .3rem; }
 }
