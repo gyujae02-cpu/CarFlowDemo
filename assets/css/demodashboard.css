@@ -246,7 +246,8 @@ body[data-theme="light"] .cf-subinfo .cf-subtitle {
 
 /* 버튼 기본 포지션 설정 */
 .cf-btn {
-  position: relative; /* 🔑 자식 요소 기준점 */
+  position: relative;
+  /* 🔑 자식 요소 기준점 */
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -255,8 +256,10 @@ body[data-theme="light"] .cf-subinfo .cf-subtitle {
 /* 🔴 알림 동그라미 */
 .cf-badge-dot {
   position: absolute;
-  top: -2px;     /* 버튼 상단에서 거리 */
-  right: -4px;   /* 버튼 오른쪽에서 거리 */
+  top: -2px;
+  /* 버튼 상단에서 거리 */
+  right: -4px;
+  /* 버튼 오른쪽에서 거리 */
   width: 10px;
   height: 10px;
   background-color: #ff4d4d;
@@ -267,8 +270,17 @@ body[data-theme="light"] .cf-subinfo .cf-subtitle {
 
 /* ✨ 은은한 깜빡임 */
 @keyframes pulseDot {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.3); opacity: 0.6; }
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.3);
+    opacity: 0.6;
+  }
 }
 
 .cf-btn-select:hover {
@@ -1073,15 +1085,18 @@ body[data-theme="light"] .cf-connector-abs .cf-dot {
 
 /* 연료 수준별 색상 */
 .cf-mileage-value.high {
-  color: #4ef54e; /* 🟢 70~100% */
+  color: #4ef54e;
+  /* 🟢 70~100% */
 }
 
 .cf-mileage-value.medium {
-  color: #ffcc33; /* 🟡 30~69% */
+  color: #ffcc33;
+  /* 🟡 30~69% */
 }
 
 .cf-mileage-value.low {
-  color: #ff4d4d; /* 🔴 0~29% */
+  color: #ff4d4d;
+  /* 🔴 0~29% */
 }
 
 .cf-warning-text {
@@ -1127,10 +1142,13 @@ body[data-theme="light"] .cf-connector-abs .cf-dot {
 
 /* 경고 깜빡임 */
 @keyframes pulseWarning {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.9;
     transform: translateX(-50%) scale(1);
   }
+
   50% {
     opacity: 0.6;
     transform: translateX(-50%) scale(1.05);
@@ -1139,15 +1157,19 @@ body[data-theme="light"] .cf-connector-abs .cf-dot {
 
 /* 심각한 문제 깜빡임 (조금 더 빠르고 강한 효과) */
 @keyframes pulseCritical {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.8;
     transform: translateX(-50%) scale(1);
   }
+
   50% {
     opacity: 0.4;
     transform: translateX(-50%) scale(1.08);
   }
 }
+
 /* ============================
    📱 CARFLOW Mobile Compact Patch
    (append at the very end)
@@ -1156,27 +1178,67 @@ body[data-theme="light"] .cf-connector-abs .cf-dot {
 
 /* rem 기반 전역 축소: 768/480/360 단계로 단계적 축소 */
 @media (max-width: 768px) {
-  html { font-size: 93.75%; }  /* 15px 기준 */
+  html {
+    font-size: 93.75%;
+  }
+
+  /* 15px 기준 */
 }
+
 @media (max-width: 480px) {
-  html { font-size: 87.5%; }   /* 14px 기준 */
+  html {
+    font-size: 87.5%;
+  }
+
+  /* 14px 기준 */
 }
+
 @media (max-width: 360px) {
-  html { font-size: 81.25%; }  /* 13px 기준 */
+  html {
+    font-size: 81.25%;
+  }
+
+  /* 13px 기준 */
 }
 
 /* 네비게이션/브랜드 영역 더 컴팩트 */
 @media (max-width: 768px) {
-  .navbar { padding: .5rem .75rem; }
-  .navbar-brand { gap: 6px; }
-  .navbar-brand img, .cf-logo { height: 20px; }
-  .btn-logout { padding: 4px 10px; font-size: .8rem; }
-  .cf-welcome-text { max-width: 34vw; }
+  .navbar {
+    padding: .5rem .75rem;
+  }
+
+  .navbar-brand {
+    gap: 6px;
+  }
+
+  .navbar-brand img,
+  .cf-logo {
+    height: 20px;
+  }
+
+  .btn-logout {
+    padding: 4px 10px;
+    font-size: .8rem;
+  }
+
+  .cf-welcome-text {
+    max-width: 34vw;
+  }
 }
+
 @media (max-width: 480px) {
-  .navbar { padding: .45rem .6rem; }
-  .navbar-brand img, .cf-logo { height: 18px; }
-  .cf-welcome-text { max-width: 50vw; }
+  .navbar {
+    padding: .45rem .6rem;
+  }
+
+  .navbar-brand img,
+  .cf-logo {
+    height: 18px;
+  }
+
+  .cf-welcome-text {
+    max-width: 50vw;
+  }
 }
 
 /* 메인 캐러셀/슬라이드 여백·크기 축소 */
@@ -1188,12 +1250,31 @@ body[data-theme="light"] .cf-connector-abs .cf-dot {
     border-radius: 18px;
     padding-bottom: 40px;
   }
-  .cf-slide { padding: clamp(10px, 2.2vw, 18px); }
-  .cf-slide-topbar { top: 14px; left: 14px; right: 14px; }
-  .cf-top-title { font-size: 1.15rem; }
+
+  .cf-slide {
+    padding: clamp(10px, 2.2vw, 18px);
+  }
+
+  .cf-slide-topbar {
+    top: 14px;
+    left: 14px;
+    right: 14px;
+  }
+
+  .cf-top-title {
+    font-size: 1.15rem;
+  }
+
   .cf-topblock .cf-subtitle,
-  .cf-subinfo .cf-subtitle { font-size: .72rem; opacity: .7; }
-  .cf-btn { padding: 6px 10px; font-size: .82rem; }
+  .cf-subinfo .cf-subtitle {
+    font-size: .72rem;
+    opacity: .7;
+  }
+
+  .cf-btn {
+    padding: 6px 10px;
+    font-size: .82rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1203,30 +1284,91 @@ body[data-theme="light"] .cf-connector-abs .cf-dot {
     border-radius: 16px;
     padding-bottom: 44px;
   }
-  .cf-top-title { font-size: 1.05rem; }
-  .cf-btn { padding: 5px 9px; font-size: .78rem; }
-  .cf-dots { bottom: 12px; gap: 6px; }
-  .cf-control { width: 40px; height: 40px; }
-  .cf-control svg { width: 18px; height: 18px; }
+
+  .cf-top-title {
+    font-size: 1.05rem;
+  }
+
+  .cf-btn {
+    padding: 5px 9px;
+    font-size: .78rem;
+  }
+
+  .cf-dots {
+    bottom: 12px;
+    gap: 6px;
+  }
+
+  .cf-control {
+    width: 40px;
+    height: 40px;
+  }
+
+  .cf-control svg {
+    width: 18px;
+    height: 18px;
+  }
 }
 
 /* 히어로 이미지/번호판/마일리지 축소 */
 @media (max-width: 768px) {
-  .cf-hero-img { width: min(640px, 78%); bottom: 9%; }
-  .cf-plate { width: 132px; }
-  .cf-plate-text { font-size: 17px; letter-spacing: 1.2px; }
-  .cf-plate-kr { font-size: 15px; }
-  .cf-mileage { bottom: 6%; font-size: .82rem; gap: 4px; }
-  .cf-mileage-icon { width: 16px; height: 16px; }
+  .cf-hero-img {
+    width: min(640px, 78%);
+    bottom: 9%;
+  }
+
+  .cf-plate {
+    width: 132px;
+  }
+
+  .cf-plate-text {
+    font-size: 17px;
+    letter-spacing: 1.2px;
+  }
+
+  .cf-plate-kr {
+    font-size: 15px;
+  }
+
+  .cf-mileage {
+    bottom: 6%;
+    font-size: .82rem;
+    gap: 4px;
+  }
+
+  .cf-mileage-icon {
+    width: 16px;
+    height: 16px;
+  }
 }
 
 @media (max-width: 480px) {
-  .cf-hero-img { width: min(560px, 82%); bottom: 10%; }
-  .cf-plate { width: 120px; }
-  .cf-plate-text { font-size: 15px; }
-  .cf-plate-kr { font-size: 14px; }
-  .cf-mileage { bottom: 8%; font-size: .8rem; }
-  .cf-mileage-icon { width: 15px; height: 15px; }
+  .cf-hero-img {
+    width: min(560px, 82%);
+    bottom: 10%;
+  }
+
+  .cf-plate {
+    width: 120px;
+  }
+
+  .cf-plate-text {
+    font-size: 15px;
+  }
+
+  .cf-plate-kr {
+    font-size: 14px;
+  }
+
+  .cf-mileage {
+    bottom: 8%;
+    font-size: .8rem;
+  }
+
+  .cf-mileage-icon {
+    width: 15px;
+    height: 15px;
+  }
 }
 
 /* 카드/인포박스 압축 */
@@ -1236,48 +1378,92 @@ body[data-theme="light"] .cf-connector-abs .cf-dot {
     padding: 14px 16px;
     border-radius: 14px;
   }
-  .cf-slide-title { font-size: 1.35rem; }
-  .cf-slide-desc { font-size: .9rem; }
+
+  .cf-slide-title {
+    font-size: 1.35rem;
+  }
+
+  .cf-slide-desc {
+    font-size: .9rem;
+  }
+
   .cf-info-box {
     font-size: .9rem;
     line-height: 1.6;
     padding: 24px 16px;
     border-radius: 14px;
   }
-  .cf-info-thanks { font-size: .95em; }
+
+  .cf-info-thanks {
+    font-size: .95em;
+  }
 }
 
 /* 섹션 타이틀 더 작게 */
 @media (max-width: 768px) {
-  .cf-section-title { font-size: .85rem; margin: 8px 0 4px; }
+  .cf-section-title {
+    font-size: .85rem;
+    margin: 8px 0 4px;
+  }
 }
+
 @media (max-width: 480px) {
-  .cf-section-title { font-size: .8rem; margin: 6px 0 2px; }
+  .cf-section-title {
+    font-size: .8rem;
+    margin: 6px 0 2px;
+  }
 }
 
 /* 커넥터/경고 텍스트 축소 */
 @media (max-width: 768px) {
-  .cf-connector-abs { width: 1.5px; }
-  .cf-connector-abs .cf-dot { width: 8px; height: 8px; bottom: -4px; }
-  .cf-warning-text { font-size: 1rem; }
-  .cf-warning-sub { font-size: .78rem; }
+  .cf-connector-abs {
+    width: 1.5px;
+  }
+
+  .cf-connector-abs .cf-dot {
+    width: 8px;
+    height: 8px;
+    bottom: -4px;
+  }
+
+  .cf-warning-text {
+    font-size: 1rem;
+  }
+
+  .cf-warning-sub {
+    font-size: .78rem;
+  }
 }
+
 @media (max-width: 480px) {
-  .cf-warning-text { font-size: .95rem; }
-  .cf-warning-sub { font-size: .72rem; }
+  .cf-warning-text {
+    font-size: .95rem;
+  }
+
+  .cf-warning-sub {
+    font-size: .72rem;
+  }
 }
 
 /* 푸터 문구도 살짝 축소 */
 @media (max-width: 768px) {
-  .footer-text { font-size: .8rem; }
+  .footer-text {
+    font-size: .8rem;
+  }
 }
+
 @media (max-width: 480px) {
-  .footer-text { font-size: .75rem; }
+  .footer-text {
+    font-size: .75rem;
+  }
 }
 
 /* iOS 더블탭 확대 방지 & 터치 타깃 유지(최소 40px) */
 @media (max-width: 480px) {
+
   .cf-control,
   .btn,
-  .cf-btn { min-height: 40px; }
+  .cf-btn {
+    min-height: 40px;
+  }
 }
