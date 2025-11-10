@@ -468,6 +468,11 @@ body[data-theme="light"] .cf-btn-select:active {
   z-index: 15;
 }
 
+/* 버튼 클릭 시 살짝 커졌다가 복귀하는 효과 */
+.cf-control:active {
+  transform: translateY(-50%) scale(1.2);
+}
+
 .cf-prev {
   left: 12px;
 }
@@ -660,14 +665,13 @@ body[data-theme="dark"] .cf-section-title {
 /* ===== Odometer + Fuel inline row ===== */
 .cf-mileage {
   position: absolute;
-  bottom: 1%;
+  bottom: 3%;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: nowrap;
-  /* 한 줄 고정 */
   gap: 6px;
   white-space: nowrap;
   color: var(--text-color);
@@ -676,6 +680,46 @@ body[data-theme="dark"] .cf-section-title {
   z-index: 8;
   user-select: none;
   text-shadow: 0 0 6px rgba(0, 0, 0, 0.6);
+}
+
+/* Location (fixed text below mileage) */
+.cf-location {
+  position: absolute;
+  bottom: 0.1%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  opacity: 0.9;
+  z-index: 7;
+  user-select: none;
+}
+
+.cf-location-icon {
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.cf-location-value {
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
+/* Light theme 튜닝 (ODO와 동일 톤) */
+body[data-theme="light"] .cf-location {
+  color: #555;
+  opacity: 1;
+}
+
+body[data-theme="light"] .cf-location-value {
+  color: #000;
+  font-weight: 500;
 }
 
 /* 아이콘 공통 */
@@ -1157,7 +1201,6 @@ body[data-theme="light"] .cf-popup-close {
   display: flex;
 }
 
-/* 공통 모달 박스: 다크/라이트 동일 사이즈 */
 .cf-modal-content {
   width: min(420px, 88%);
   padding: 20px 22px 18px;
@@ -1675,7 +1718,6 @@ body[data-theme="light"] #cfVehicleInfoOk.cf-btn:hover {
   visibility: hidden;
 }
 
-/* 컨테이너 */
 .cf-loader {
   position: relative;
   width: 96px;
@@ -1685,7 +1727,6 @@ body[data-theme="light"] #cfVehicleInfoOk.cf-btn:hover {
   justify-content: center;
 }
 
-/* 회전 링 */
 .cf-loader-ring {
   position: absolute;
   inset: 0;
@@ -1696,7 +1737,6 @@ body[data-theme="light"] #cfVehicleInfoOk.cf-btn:hover {
   transform-origin: center center;
 }
 
-/* 공전하는 점 */
 .cf-loader-dot {
   position: absolute;
   width: 9px;
@@ -1704,13 +1744,11 @@ body[data-theme="light"] #cfVehicleInfoOk.cf-btn:hover {
   border-radius: 999px;
   background: #ffffff;
   box-shadow: 0 0 14px rgba(255, 255, 255, 0.95);
-  /* 중심에서 위쪽으로 살짝 떨어진 위치에서 시작 */
   transform: translateY(-36px);
   transform-origin: center center;
   animation: cf-dot-orbit 1.2s linear infinite;
 }
 
-/* 라벨 */
 .cf-loader-label {
   position: relative;
   font-family: 'Montserrat', 'Segoe UI', sans-serif;
@@ -1722,7 +1760,6 @@ body[data-theme="light"] #cfVehicleInfoOk.cf-btn:hover {
   text-shadow: 0 0 8px rgba(0, 0, 0, 0.9);
 }
 
-/* 라이트 테마에서도 동일 컨셉 유지 (조금만 밝게) */
 body[data-theme="light"] .cf-loader-overlay {
   background:
     radial-gradient(circle at top, rgba(255, 255, 255, 0.06), rgba(0, 0, 0, 0.9));
@@ -1732,7 +1769,6 @@ body[data-theme="light"] .cf-loader-label {
   color: #ffffff;
 }
 
-/* 회전 애니메이션 */
 @keyframes cf-rotate {
   0% {
     transform: rotate(0deg);
@@ -1743,7 +1779,6 @@ body[data-theme="light"] .cf-loader-label {
   }
 }
 
-/* 점이 링을 따라 도는 애니메이션 */
 @keyframes cf-dot-orbit {
   0% {
     transform: rotate(0deg) translateY(-36px);
@@ -1752,4 +1787,45 @@ body[data-theme="light"] .cf-loader-label {
   100% {
     transform: rotate(360deg) translateY(-36px);
   }
+}
+
+/* ==========================
+   Last Update Timestamp
+   ========================== */
+
+.cf-lastupdate {
+  position: absolute;
+  top: 4px;
+  right: 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  user-select: none;
+  pointer-events: none;
+}
+
+/* 다크 테마 */
+body[data-theme="dark"] .cf-lastupdate {
+  color: #f5f5f5;
+}
+
+/* 라이트 테마 */
+body[data-theme="light"] .cf-lastupdate {
+  color: #111;
+}
+
+.cf-update-icon {
+  width: 13px;
+  height: 13px;
+  opacity: 0.9;
+  transform: translateY(0.5px);
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+/* Details 버튼만 아래로 이동 */
+.cf-slide-topbar .cf-popup-btn {
+  margin-top: 30px;
 }
